@@ -17,5 +17,4 @@ public class Empleado {
         this.sueldoEmpleado = sueldoEmpleado;
     }
     
-
 }

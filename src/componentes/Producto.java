@@ -14,5 +14,15 @@ public class Producto {
         this.cantidadProducto = cantidadProducto;
         this.idProveedor = idProveedor;
         this.nombreEmpresa = Empresa.getNombreEmpresa();
+        this.fechaRecepcion = fechaRecepcion;
+        this.caducidadProducto = caducidadProducto;
+    }
+
+    public void setIdProducto(int newIdProducto){
+        this.idProducto = newIdProducto;
+    }
+
+    public int getIdProducto(){
+        return this.idProducto;
     }
 }

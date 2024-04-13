@@ -2,6 +2,7 @@ package componentes;
 
 public class Inventario {
 
+    //No termino de entender como podemos sacarle provecho a esto, ya que tenemos "cantidad producto". Hay que verlo ^^
     private int idInventario, idProveedor;
     private String nombreEmpresa;
 

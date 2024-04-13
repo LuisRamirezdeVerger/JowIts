@@ -3,20 +3,18 @@ package componentes;
 public class Empresa {
 
     private String CIF;
-    //(1) vvv -- static?? -- vvv
-    private static String nombreEmpresa;
+    private String nombreEmpresa;
     private int numeroEmpleados;
 
-    public Empresa(String CIF, String nombreEmpresa, int numeroEmpleados){
+    //numeroEmpleados no está en el constructor para que no sea necesaria añadirlo a la hora de crear el objeto Empresa
+    public Empresa(String CIF, String nombreEmpresa){
         
         this.CIF = CIF;
-        Empresa.nombreEmpresa = nombreEmpresa;
-        this.numeroEmpleados = numeroEmpleados;
+        this.nombreEmpresa = nombreEmpresa;
     }
 
-    public static String getNombreEmpresa(){
-        //No sé exactamente como hacer ésto. Preguntar!!(1)
-        return nombreEmpresa;
+    public String getNombreEmpresa(){
+        return this.nombreEmpresa;
     }
 
     public void setNombreEmpresa(String newNombreEmpresa){

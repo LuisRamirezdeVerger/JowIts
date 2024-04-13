@@ -9,11 +9,11 @@ public class Producto {
     private String fechaRecepcion;
     private String caducidadProducto;
 
-    public Producto(int idProducto, int cantidadProducto, int idProveedor, String nombreEmpresa, String fechaRecepcion, String caducidadProducto){
+    //Elimino nombreEmpresa para que no sea necesario añadirlo a la hora de crear un producto
+    public Producto(int idProducto, int cantidadProducto, int idProveedor, String fechaRecepcion, String caducidadProducto){
         this.idProducto = idProducto;
         this.cantidadProducto = cantidadProducto;
         this.idProveedor = idProveedor;
-        this.nombreEmpresa = Empresa.getNombreEmpresa();
         this.fechaRecepcion = fechaRecepcion;
         this.caducidadProducto = caducidadProducto;
     }

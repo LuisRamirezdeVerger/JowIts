@@ -8,10 +8,10 @@ public class Producto {
     private String nombreEmpresa;
     private String fechaRecepcion;
     private String caducidadProducto;
-    /*Podríamos añadir "estado" y que cambie de color el fondo de la imagen del producto o algo así,
+    /* Podríamos añadir "estado" y que cambie de color el fondo de la imagen del producto si la caducidad está cercana o algo así,
     pero me parece algo más "late" */
 
-    //Elimino nombreEmpresa para que no sea necesario añadirlo a la hora de crear un producto
+    //Eliminamos nombreEmpresa del constructor para que no sea necesario añadirlo a la hora de crear un producto
     public Producto(int idProducto, int cantidadProducto, int idProveedor, String fechaRecepcion, String caducidadProducto){
         this.idProducto = idProducto;
         this.cantidadProducto = cantidadProducto;

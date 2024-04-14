@@ -2,13 +2,28 @@ package componentes;
 
 public class Reserva {
 
-    private int idReserva, idCliente;
-    private String telefonoCliente;
+    private int idReserva;
+    private Cliente cliente;
 
-    public Reserva (int idReserva, int idCliente, String telefonoCliente){
+    public Reserva (int idReserva, Cliente cliente){
+
         this.idReserva = idReserva;
-        this.idCliente = idCliente;
-        this.telefonoCliente = telefonoCliente;
+        this.cliente = cliente;
+    }
 
+    public void setIdReserva(int newIdReserva){
+        this.idReserva = newIdReserva;
+    }
+    
+    public int getIdReserva(){
+        return this.idReserva;
+    }
+
+    public void setCliente(Cliente newCliente){
+        this.cliente = newCliente;
+    }
+
+    public Cliente getCliente(){
+        return this.cliente;
     }
 }

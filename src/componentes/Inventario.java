@@ -6,6 +6,7 @@ public class Inventario {
     private int idInventario;
     private Proveedor proveedor;
     private Empresa empresa;
+    private Producto producto;
 
     public Inventario (int idInventario, Proveedor proveedor, Empresa empresa){
 
@@ -36,5 +37,13 @@ public class Inventario {
 
     public Empresa getEmpresa(){
         return this.empresa;
+    }
+
+    public void setProducto(Producto newProducto){
+        this.producto = newProducto;
+    }
+
+    public Producto getProducto(){
+        return this.producto;
     }
 }

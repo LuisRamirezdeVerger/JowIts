@@ -1,1 +1,0 @@
-Cabesa estos archivos dan error en visual studio code, al abrirlo en Eclipse deberia dejar de dar fallo por que faltan las librerias.

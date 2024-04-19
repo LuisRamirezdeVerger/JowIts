@@ -58,7 +58,7 @@ public class MAIN extends JFrame {
 
 		IconoUsuario.setBounds(122, 306, 28, 32);
 
-		ImageIcon ico2 =new ImageIcon(getClass().getResource("C:\\Users\\josem\\Desktop\\Proyecto final 1º DAM\\logo2.png"));
+		ImageIcon ico2 =new ImageIcon(getClass().getResource("/imagenes/logo2.png"));
 
 		ImageIcon img2 =new ImageIcon(ico2.getImage().getScaledInstance(IconoUsuario.getWidth(), IconoUsuario.getHeight(), Image.SCALE_SMOOTH));
 

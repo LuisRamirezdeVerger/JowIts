@@ -2,10 +2,14 @@ package InterfacesGraficas;
 
 import java.awt.EventQueue;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -55,6 +59,24 @@ public class Empresa extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+        
+        		
+        		//Podemos utilizar HTML!!
+        		JLabel lblTituloEmpresa = new JLabel("Añade una nueva empresa");
+        		lblTituloEmpresa.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        		lblTituloEmpresa.setHorizontalAlignment(SwingConstants.CENTER);
+        		lblTituloEmpresa.setBackground(SystemColor.textHighlightText);
+        		lblTituloEmpresa.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED)); // Agrega un borde en relieve
+        		lblTituloEmpresa.setBounds(10, 11, 414, 39);
+        		contentPane.add(lblTituloEmpresa);
+		
+		// Panel para dar fondo transparente al título
+        JPanel panelTitulo = new JPanel();
+        panelTitulo.setBackground(new Color(0, 0, 0, 0)); // Fondo semitransparente
+        panelTitulo.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED)); // Borde en relieve
+        panelTitulo.setLayout(new BorderLayout()); // Utilizamos BorderLayout para alinear el título en el centro
+        panelTitulo.setBounds(10, 11, 414, 39);
+        contentPane.add(panelTitulo);
 		
 		JTextArea userTextArea = new JTextArea("Nombre de Empresa");
 		userTextArea.setForeground(SystemColor.window);
@@ -81,7 +103,7 @@ public class Empresa extends JFrame {
 		
 		
 		JEditorPane dtrpnNombreUsuario = new JEditorPane();
-		dtrpnNombreUsuario.setText("Introduce usuario ");
+		dtrpnNombreUsuario.setText("Introduce empresa");
 		dtrpnNombreUsuario.setBounds(82, 157, 100, 20);
 		dtrpnNombreUsuario.addFocusListener(new FocusAdapter() {
 			@Override
@@ -102,19 +124,14 @@ public class Empresa extends JFrame {
 			}
 		});
 		contentPane.add(txtCif);
+		ImageIcon getIcono = new ImageIcon(getClass().getResource("/imagenes/logo2.png"));
 		
 		JLabel lblFondoLogo = new JLabel("FondoImg");
-		lblFondoLogo.setBounds(63, 57, 313, 193);
-		ImageIcon getIcono = new ImageIcon(getClass().getResource("/imagenes/logo2.png"));
+		lblFondoLogo.setBounds(20, 11, 404, 239);
+		lblFondoLogo.setBackground(new Color(0, 0, 0, 80));
 		ImageIcon icono = new ImageIcon(getIcono.getImage().getScaledInstance(lblFondoLogo.getWidth(), lblFondoLogo.getHeight(), Image.SCALE_SMOOTH));
 		lblFondoLogo.setIcon(icono);
 		contentPane.add(lblFondoLogo);
-		
-		JLabel lbltituloEmpresa = new JLabel("Añade una nueva empresa");
-		lbltituloEmpresa.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lbltituloEmpresa.setHorizontalAlignment(SwingConstants.CENTER);
-		lbltituloEmpresa.setBounds(10, 11, 414, 39);
-		contentPane.add(lbltituloEmpresa);
 		
 	}
 }

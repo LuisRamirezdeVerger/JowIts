@@ -1,12 +1,15 @@
 package InterfacesGraficas;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.Image;
 import java.awt.Insets;
 
@@ -57,6 +60,8 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	//Podríamos bloquear el tamaño de la ventana o hacerla fullscreen
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(450, 300, 537, 316);
@@ -125,6 +130,7 @@ public class Login extends JFrame {
 		contentPane.add(txtrContrasea);
 		
 		JButton btnConectar = new JButton("Conectar");
+		btnConectar.setToolTipText("Pulsa para conectarte a tu cuenta");
 		//Con "MouseListener" podemos hacer diferentes cosas cuando el mouse entre/salga
 		btnConectar.addMouseListener(new MouseAdapter() {
 		    @Override

@@ -13,9 +13,13 @@ import java.awt.event.ComponentEvent;
 import java.awt.Image;
 import java.awt.Insets;
 
+
 import javax.swing.JFrame;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
@@ -130,6 +134,7 @@ public class Login extends JFrame {
 		contentPane.add(txtrContrasea);
 		
 		JButton btnConectar = new JButton("Conectar");
+		btnConectar.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		btnConectar.setToolTipText("Pulsa para conectarte a tu cuenta");
 		//Con "MouseListener" podemos hacer diferentes cosas cuando el mouse entre/salga
 		btnConectar.addMouseListener(new MouseAdapter() {
@@ -165,7 +170,7 @@ public class Login extends JFrame {
 			}
 		});
 		btnConectar.setForeground(Color.BLACK);
-		btnConectar.setBackground(Color.ORANGE);
+		//btnConectar.setBackground(Color.ORANGE);
 		btnConectar.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 15));
 		btnConectar.setBounds(132, 222, 250, 31);
 		contentPane.add(btnConectar);

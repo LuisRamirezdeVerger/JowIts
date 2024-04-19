@@ -3,6 +3,7 @@ package InterfacesGraficas;
 import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,6 +24,7 @@ import javax.swing.JTextField;
 import java.awt.SystemColor;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.JButton;
 
 public class Empresa extends JFrame {
 
@@ -59,11 +61,16 @@ public class Empresa extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+        		
+        		JButton btnAnadirEmpresa = new JButton("Añadir Empresa");
+        		btnAnadirEmpresa.setBounds(90, 182, 241, 53);
+        		contentPane.add(btnAnadirEmpresa);
         
         		
         		//Podemos utilizar HTML!!
         		JLabel lblTituloEmpresa = new JLabel("Añade una nueva empresa");
         		lblTituloEmpresa.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        		lblTituloEmpresa.setForeground(Color.white);
         		lblTituloEmpresa.setHorizontalAlignment(SwingConstants.CENTER);
         		lblTituloEmpresa.setBackground(SystemColor.textHighlightText);
         		lblTituloEmpresa.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED)); // Agrega un borde en relieve
@@ -72,7 +79,7 @@ public class Empresa extends JFrame {
 		
 		// Panel para dar fondo transparente al título
         JPanel panelTitulo = new JPanel();
-        panelTitulo.setBackground(new Color(0, 0, 0, 0)); // Fondo semitransparente
+        panelTitulo.setBackground(new Color(0, 0, 0, 90)); // Fondo semitransparente
         panelTitulo.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED)); // Borde en relieve
         panelTitulo.setLayout(new BorderLayout()); // Utilizamos BorderLayout para alinear el título en el centro
         panelTitulo.setBounds(10, 11, 414, 39);
@@ -86,7 +93,7 @@ public class Empresa extends JFrame {
 		userTextArea.setBackground(new Color(0, 0, 0, 50));
 		userTextArea.setAlignmentY(0.5f);
 		userTextArea.setAlignmentX(0.5f);
-		userTextArea.setBounds(82, 126, 100, 20);
+		userTextArea.setBounds(60, 74, 120, 39);
 		contentPane.add(userTextArea);
 		
 		
@@ -97,14 +104,15 @@ public class Empresa extends JFrame {
 		txtrCif.setBackground(new Color(0, 0, 0, 50));
 		txtrCif.setAlignmentY(0.5f);
 		txtrCif.setAlignmentX(0.5f);
-		txtrCif.setBounds(232, 126, 100, 20);
+		txtrCif.setBounds(230, 74, 120, 39);
 		contentPane.add(txtrCif);
 		
 		
 		
 		JEditorPane dtrpnNombreUsuario = new JEditorPane();
 		dtrpnNombreUsuario.setText("Introduce empresa");
-		dtrpnNombreUsuario.setBounds(82, 157, 100, 20);
+		dtrpnNombreUsuario.setBounds(60, 134, 120, 30);
+		dtrpnNombreUsuario.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		dtrpnNombreUsuario.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -115,7 +123,7 @@ public class Empresa extends JFrame {
 		contentPane.add(dtrpnNombreUsuario);
 		
 		txtCif = new JTextField("CIF");
-		txtCif.setBounds(232, 157, 100, 20);
+		txtCif.setBounds(230, 134, 120, 30);
 		txtCif.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {

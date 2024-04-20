@@ -66,6 +66,7 @@ public class Login extends JFrame {
 	 */
 	
 	//Podríamos bloquear el tamaño de la ventana o hacerla fullscreen
+	// Hacer que los cuadros de user/contraseña estén en vertical
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(450, 300, 537, 316);
@@ -90,7 +91,7 @@ public class Login extends JFrame {
 				dtrpnNombreUsuario.setText("");
 			}
 		});
-		dtrpnNombreUsuario.setText("Introduce usuario ");
+		dtrpnNombreUsuario.setText("Usuario ");
 		dtrpnNombreUsuario.setBounds(132, 178, 100, 20);
 		contentPane.add(dtrpnNombreUsuario);
 		

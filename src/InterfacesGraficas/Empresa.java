@@ -85,33 +85,11 @@ public class Empresa extends JFrame {
         panelTitulo.setBounds(10, 11, 414, 39);
         contentPane.add(panelTitulo);
 		
-		JTextArea userTextArea = new JTextArea("Nombre de Empresa");
-		userTextArea.setForeground(SystemColor.window);
-		userTextArea.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		userTextArea.setEditable(false);
-		//Añadimos transparencia para mejorar el diseño
-		userTextArea.setBackground(new Color(0, 0, 0, 50));
-		userTextArea.setAlignmentY(0.5f);
-		userTextArea.setAlignmentX(0.5f);
-		userTextArea.setBounds(60, 74, 120, 39);
-		contentPane.add(userTextArea);
-		
-		
-		JTextArea txtrCif = new JTextArea("CIF");
-		txtrCif.setForeground(SystemColor.window);
-		txtrCif.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		txtrCif.setEditable(false);
-		txtrCif.setBackground(new Color(0, 0, 0, 50));
-		txtrCif.setAlignmentY(0.5f);
-		txtrCif.setAlignmentX(0.5f);
-		txtrCif.setBounds(230, 74, 120, 39);
-		contentPane.add(txtrCif);
-		
 		
 		
 		JEditorPane dtrpnNombreUsuario = new JEditorPane();
 		dtrpnNombreUsuario.setText("Introduce empresa");
-		dtrpnNombreUsuario.setBounds(60, 134, 120, 30);
+		dtrpnNombreUsuario.setBounds(154, 75, 120, 30);
 		dtrpnNombreUsuario.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		dtrpnNombreUsuario.addFocusListener(new FocusAdapter() {
 			@Override
@@ -123,7 +101,7 @@ public class Empresa extends JFrame {
 		contentPane.add(dtrpnNombreUsuario);
 		
 		txtCif = new JTextField("CIF");
-		txtCif.setBounds(230, 134, 120, 30);
+		txtCif.setBounds(154, 129, 120, 30);
 		txtCif.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {

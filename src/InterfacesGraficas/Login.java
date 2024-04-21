@@ -38,6 +38,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class Login extends JFrame {
 
@@ -113,25 +114,15 @@ public class Login extends JFrame {
 		});
 		contentPane.add(passwordField);
 		
-		JTextArea userTextArea = new JTextArea("Usuario");
-		userTextArea.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		userTextArea.setBackground(null);
-		userTextArea.setBounds(132, 147, 100, 20);
-		userTextArea.setMargin(new Insets(3, 30, 3, 0));
-		userTextArea.setAlignmentX(userTextArea.CENTER_ALIGNMENT);
-		userTextArea.setAlignmentY(userTextArea.CENTER_ALIGNMENT);
-		
-		userTextArea.setEditable(false);
-		contentPane.add(userTextArea);
-		
-		JTextArea txtrContrasea = new JTextArea("Contrase\u00F1a");
+		JTextField txtrContrasea = new JTextField("Introduce tus credenciales");
+		txtrContrasea.setHorizontalAlignment(SwingConstants.CENTER);
 		txtrContrasea.setMargin(new Insets(3, 20, 3, 0));
 		txtrContrasea.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		txtrContrasea.setEditable(false);
 		txtrContrasea.setBackground((Color) null);
 		txtrContrasea.setAlignmentY(0.5f);
 		txtrContrasea.setAlignmentX(0.5f);
-		txtrContrasea.setBounds(282, 147, 100, 20);
+		txtrContrasea.setBounds(132, 147, 250, 20);
 		contentPane.add(txtrContrasea);
 		
 		JButton btnConectar = new JButton("Conectar");

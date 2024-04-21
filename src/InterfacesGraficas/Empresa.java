@@ -83,7 +83,7 @@ public class Empresa extends JFrame {
 		btnAnadirEmpresa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnAnadirEmpresa.setBackground(Color.red);
-				System.out.println("Debería cambiar el color a rojo");
+				System.out.println("Nueva empresa añadida");
 			}
 		});
 

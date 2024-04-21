@@ -77,7 +77,7 @@ public class Login extends JFrame {
 		contentPane.setBackground(new Color(240, 230, 140));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(contentPane);
+		setContentPane(contentPane); 
 		contentPane.setLayout(null);
 		
 		JEditorPane editorPane = new JEditorPane();

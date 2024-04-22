@@ -8,7 +8,8 @@
 *.ctxt
 
 # Database files
-.mwb
+*.mwb
+*.mwb.bak
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

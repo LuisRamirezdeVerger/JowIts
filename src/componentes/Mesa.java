@@ -3,12 +3,12 @@ package componentes;
 public class Mesa {
 
     private int idMesa;
-    private Cliente cliente;
+    private int comensales;
 
-    public Mesa (int idMesa, Cliente cliente){
+    public Mesa (int idMesa, int comensales){
 
         this.idMesa = idMesa;
-        this.cliente = cliente;
+        this.comensales = comensales;
     }
 
     public void setIdMesa(int newIdMesa){
@@ -19,11 +19,11 @@ public class Mesa {
         return this.idMesa;
     }
 
-    public void setCliente(Cliente newCliente){
-        this.cliente = newCliente;
+    public void setCliente(int newComensales){
+        this.comensales = newComensales;
     }
 
-    public Cliente getCliente(){
-        return this.cliente;
+    public int getCliente(){
+        return this.comensales;
     }
 }

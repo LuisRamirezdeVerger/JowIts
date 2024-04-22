@@ -1,44 +1,29 @@
-package InterfacesGraficas;
+package interfacesGraficas;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.Image;
-import java.awt.Insets;
-
-
-import javax.swing.JFrame;
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JEditorPane;
-import javax.swing.JLabel;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JTextPane;
-import javax.swing.UIManager;
-import javax.swing.JTextArea;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 
 public class Login extends JFrame {
 
@@ -70,7 +55,7 @@ public class Login extends JFrame {
 	// Hacer que los cuadros de user/contraseña estén en vertical
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(450, 300, 537, 316);
+		setBounds(450, 300, 1280, 720);
 		//Hacemos que la pantalla se centre
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();

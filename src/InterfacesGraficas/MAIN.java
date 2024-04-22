@@ -1,16 +1,14 @@
-package InterfacesGraficas;
+package interfacesGraficas;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
 
 public class MAIN extends JFrame {
 
@@ -55,15 +53,11 @@ public class MAIN extends JFrame {
 		 */
 		
 		JLabel IconoUsuario = new JLabel("IconoUsuario");
-
+		
 		IconoUsuario.setBounds(122, 306, 28, 32);
-
 		ImageIcon ico2 =new ImageIcon(getClass().getResource("/imagenes/logo2.png"));
-
 		ImageIcon img2 =new ImageIcon(ico2.getImage().getScaledInstance(IconoUsuario.getWidth(), IconoUsuario.getHeight(), Image.SCALE_SMOOTH));
-
 		IconoUsuario.setIcon(img2);
-
 		contentPane.add(IconoUsuario);
 		
 		

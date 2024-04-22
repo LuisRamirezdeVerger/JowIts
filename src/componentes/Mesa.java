@@ -3,13 +3,11 @@ package componentes;
 public class Mesa {
 
     private int idMesa;
-    private Reserva reserva;
     private Cliente cliente;
 
-    public Mesa (int idMesa, Reserva reserva, Cliente cliente){
+    public Mesa (int idMesa, Cliente cliente){
 
         this.idMesa = idMesa;
-        this.reserva = reserva;
         this.cliente = cliente;
     }
 
@@ -19,14 +17,6 @@ public class Mesa {
 
     public int getIdMesa(){
         return this.idMesa;
-    }
-
-    public void setReserva (Reserva newReserva){
-        this.reserva = newReserva;
-    }
-
-    public Reserva getReserva(){
-        return this.reserva;
     }
 
     public void setCliente(Cliente newCliente){

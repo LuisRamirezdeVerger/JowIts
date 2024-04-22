@@ -72,7 +72,20 @@ public class Empresa extends JFrame {
 
 		RoundedButton btnAnadirEmpresa = new RoundedButton("Añadir Empresa", Color.gray, 50);
 		//No sé porqué, pero añadiendo un background, no se ve el cuadrado del boton NO redondeado 
-		btnAnadirEmpresa.setBackground(Color.red);
+		btnAnadirEmpresa.setBackground(Color.black);
+		btnAnadirEmpresa.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mousePressed(MouseEvent e) {
+		        // Cambiar el color de fondo cuando se presiona el botón
+		        btnAnadirEmpresa.setBackground(Color.RED.darker());
+		    }
+
+		    @Override
+		    public void mouseReleased(MouseEvent e) {
+		        // Restaurar el color de fondo original cuando se libera el botón
+		        btnAnadirEmpresa.setBackground(Color.RED);
+		    }
+		});
 		btnAnadirEmpresa.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {

@@ -11,6 +11,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.util.Scanner;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -24,6 +26,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
+
+import connections.ConexionMySQL;
+import java.awt.Component;
 
 public class Login extends JFrame {
 
@@ -60,7 +65,7 @@ public class Login extends JFrame {
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.BLACK);
-		contentPane.setBackground(new Color(240, 230, 140));
+		contentPane.setBackground(new Color(131, 185, 245));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane); 
@@ -69,27 +74,29 @@ public class Login extends JFrame {
 		JEditorPane editorPane = new JEditorPane();
 		contentPane.add(editorPane);
 		
-		JEditorPane dtrpnNombreUsuario = new JEditorPane();
+		JTextField dtrpnNombreUsuario = new JTextField();
+		dtrpnNombreUsuario.setBackground(new Color(94, 253, 102));
+		dtrpnNombreUsuario.setText("Usuario ");
 		dtrpnNombreUsuario.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				//Creamos evento que al hacer click, elimine el texto que haya
+				//Creamos evento que al hacer click, elimine el texto que haya.
 				dtrpnNombreUsuario.setText("");
 			}
 		});
-		dtrpnNombreUsuario.setText("Usuario ");
-		dtrpnNombreUsuario.setBounds(132, 178, 100, 20);
+		dtrpnNombreUsuario.setBounds(403, 419, 202, 40);
 		contentPane.add(dtrpnNombreUsuario);
 		
 		JLabel lblImagen = new JLabel("Logo");
-		lblImagen.setBounds(188, 11, 134, 125);
+		lblImagen.setBounds(450, 11, 343, 263);
 		ImageIcon ico2 = new ImageIcon(getClass().getResource("/imagenes/logo2.png"));
 		ImageIcon img2 = new ImageIcon(ico2.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH));
 		lblImagen.setIcon(img2);
 		contentPane.add(lblImagen);
 		
 		passwordField = new JPasswordField("Contraseña");
-		passwordField.setBounds(282, 178, 100, 20);
+		passwordField.setBackground(new Color(94, 253, 102));
+		passwordField.setBounds(655, 419, 208, 40);
 		passwordField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -99,16 +106,19 @@ public class Login extends JFrame {
 		});
 		contentPane.add(passwordField);
 		
-		JTextField txtrContrasea = new JTextField("Introduce tus credenciales");
-		txtrContrasea.setHorizontalAlignment(SwingConstants.CENTER);
-		txtrContrasea.setMargin(new Insets(3, 20, 3, 0));
-		txtrContrasea.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		txtrContrasea.setEditable(false);
-		txtrContrasea.setBackground((Color) null);
-		txtrContrasea.setAlignmentY(0.5f);
-		txtrContrasea.setAlignmentX(0.5f);
-		txtrContrasea.setBounds(132, 147, 250, 20);
-		contentPane.add(txtrContrasea);
+		JTextField txtrCredenciales = new JTextField("Introduce tus credenciales");
+		txtrCredenciales.setBorder(BorderFactory.createLoweredBevelBorder());
+
+
+		txtrCredenciales.setHorizontalAlignment(SwingConstants.CENTER);
+		txtrCredenciales.setMargin(new Insets(3, 20, 3, 0));
+		txtrCredenciales.setFont(new Font("Times New Roman", Font.PLAIN, 24));
+		txtrCredenciales.setEditable(false);
+		txtrCredenciales.setBackground(new Color(255, 128, 0));
+		txtrCredenciales.setAlignmentY(0.5f);
+		txtrCredenciales.setAlignmentX(0.5f);
+		txtrCredenciales.setBounds(403, 285, 460, 89);
+		contentPane.add(txtrCredenciales);
 		
 		JButton btnConectar = new JButton("Conectar");
 		btnConectar.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
@@ -144,12 +154,45 @@ public class Login extends JFrame {
 		btnConectar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Introducir conexión a la DDBB aqu�
+				ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+				
+				Scanner sc = new Scanner (System.in);
+				try {
+					connectInv.conectar();
+					System.out.println("Conexión establecida. ");
+					
+					
+					// Ejemplo de sentencia pre-definida
+					/*String sentencia = "INSERT INTO Persona (Nombre, Edad) VALUES ('Wito', '32')";
+					connect.ejecutarInsertDeleteUpdate(sentencia);*/
+					// Ejemplo de sentencia definida por el usuario
+					/* System.out.println("Introduzca nombre: ");
+					String nombre = sc.next();
+					System.out.println("Introduzca edad: ");
+					int edad = sc.nextInt();
+					String sentenciaTeclado = "INSERT INTO Persona (Nombre, Edad) VALUES ('"+ nombre +"', '"+ edad +"')";
+					connect.ejecutarInsertDeleteUpdate(sentenciaTeclado);*/
+					
+					
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} finally {
+					try {
+						connectInv.desconectar();
+						System.out.println("Desconectando :D ");
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				}
+				sc.close();
 			}
+				
+			//Conexión bbdd finalizada
 		});
 		btnConectar.setForeground(Color.BLACK);
 		//btnConectar.setBackground(Color.ORANGE);
 		btnConectar.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 15));
-		btnConectar.setBounds(132, 222, 250, 31);
+		btnConectar.setBounds(444, 513, 376, 60);
 		contentPane.add(btnConectar);
 		
 	}

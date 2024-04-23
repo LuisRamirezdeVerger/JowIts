@@ -1,11 +1,14 @@
 package interfacesGraficas;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import javax.swing.JButton;
 
 public class MainFrame extends JFrame {
 
@@ -33,12 +36,26 @@ public class MainFrame extends JFrame {
 	 */
 	public MainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1280, 720);
+		setLocationRelativeTo(null);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.ORANGE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-	}
+		contentPane.setLayout(null);
+		
+		JButton btnLogin = new JButton("Log in");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login();
+				login.setVisible(true);
+			}
+		});
+		
 
+		btnLogin.setBounds(384, 193, 350, 116);
+		contentPane.add(btnLogin);
+	}
 }

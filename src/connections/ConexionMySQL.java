@@ -36,7 +36,7 @@ public class ConexionMySQL {
      * @param bd Base de datos a la que nos conectamos
      */
     public ConexionMySQL(String usuario, String pass, String bd) {
-        HOST = "localhost";
+        HOST = "sql.freedb.tech";
         USUARIO = usuario;
         PASS = pass;
         BD = bd;

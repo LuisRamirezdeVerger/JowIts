@@ -40,7 +40,7 @@ public class MainFrame extends JFrame {
 		setLocationRelativeTo(null);
 		
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.ORANGE);
+		contentPane.setBackground(new Color(131, 185, 245));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -55,7 +55,20 @@ public class MainFrame extends JFrame {
 		});
 		
 
-		btnLogin.setBounds(384, 193, 350, 116);
+		btnLogin.setBounds(111, 347, 350, 116);
 		contentPane.add(btnLogin);
+		
+		//Crear botón de ir atrás
+		
+		JButton btnRegistrate = new JButton("Regístrate");
+		btnRegistrate.setBounds(814, 347, 350, 116);
+		btnRegistrate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Cambiar "login" por registro
+				Login login = new Login();
+				login.setVisible(true);
+			}
+		});
+		contentPane.add(btnRegistrate);
 	}
 }

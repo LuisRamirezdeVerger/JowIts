@@ -4,6 +4,10 @@ import java.awt.*;
 import javax.swing.border.*;
 
 public class RoundBorder implements Border {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
     private int radius;
 
     public RoundBorder(int radius) {

@@ -5,7 +5,11 @@ import java.awt.*;
 
 public class RoundedButton extends JButton {
 
-    private Color backgroundColor;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Color backgroundColor;
     private int cornerRadius;
 
     public RoundedButton(String text, Color backgroundColor, int cornerRadius) {

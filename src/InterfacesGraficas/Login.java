@@ -209,7 +209,11 @@ public class Login extends JFrame {
                 JOptionPane.showMessageDialog(btnFlecha, "¡Botón presionado!");
             }
         });
-		
+		btnFlecha.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Agregar aquí el MainFrame.java
+            }
+        });
 		getContentPane().add(btnFlecha, BorderLayout.CENTER);
 		btnFlecha.setBounds(52, 447, 174, 89);
 		contentPane.add(btnFlecha);

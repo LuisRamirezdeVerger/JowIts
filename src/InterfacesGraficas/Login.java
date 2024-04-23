@@ -1,5 +1,6 @@
 package interfacesGraficas;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -20,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -59,6 +61,9 @@ public class Login extends JFrame {
 	//Podríamos bloquear el tamaño de la ventana o hacerla fullscreen
 	// Hacer que los cuadros de user/contraseña estén en vertical
 	public Login() {
+		
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(450, 300, 1280, 720);
 		//Hacemos que la pantalla se centre
@@ -194,6 +199,20 @@ public class Login extends JFrame {
 		btnConectar.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 15));
 		btnConectar.setBounds(444, 513, 376, 60);
 		contentPane.add(btnConectar);
+		
+		//Imagen que vamos a usar
+		ImageIcon iconoFlecha = new ImageIcon ("flechaFruta.png");
+		JButton btnFlecha = new JButton(new ImageIcon("D:\\Users\\Wito\\eclipse-workspace\\JowIts.good\\src\\Imagenes\\flechaFruta.png"));
+		btnFlecha.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Agrega aquí la funcionalidad que deseas cuando se presione el botón
+                JOptionPane.showMessageDialog(btnFlecha, "¡Botón presionado!");
+            }
+        });
+		
+		getContentPane().add(btnFlecha, BorderLayout.CENTER);
+		btnFlecha.setBounds(52, 447, 174, 89);
+		contentPane.add(btnFlecha);
 		
 	}
 }

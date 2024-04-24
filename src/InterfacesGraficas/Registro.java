@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -206,14 +207,14 @@ public class Registro extends JFrame {
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 
-	
+			ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				String textoNombre = dtrpnNombre.getText();
 				String textoDNI = dtrpnDni.getText();
-
+				
 				//Al trabajar con contraseñas, es más seguro manejarlas como arrays de caracteres en lugar de como cadenas de texto
 				char[] passwordChars1 = passwordField.getPassword();
 				String textoPassword1 = new String(passwordChars1);
@@ -230,15 +231,17 @@ public class Registro extends JFrame {
 				try {
 
 		            // Sentencia SQL de inserción
-		            //String sql = "INSERT INTO tu_tabla (columna1, columna2, columna3) VALUES (?, ?, ?)";
-		            String sql = "INSERT INTO usuarios (nombreUsuario, dniUsuario, passUsuario) VALUES (?, ?, ?)";
+		            
+		            String consulta = "INSERT INTO usuarios (nombreUsuario, dniUsuario, passUsuario) VALUES (?, ?, ?)";
 
 		            // Preparar la sentencia
-		            PreparedStatement statement = connections.ConexionMySQL.prepararStatement(sql);
+		            PreparedStatement statement = connectInv.ejecutarInsertDeleteUpdate(consulta);
+		            
+		            ResultSet resulset = statement.executeQuery();
 		            statement.setString(1, textoNombre);
 		            statement.setString(2, textoDNI);
 		            statement.setString(3, textoPassword2);
-		           
+		         
 		            
 		            // Ejecutar la sentencia
 		            int filasInsertadas = statement.executeUpdate();
@@ -250,6 +253,7 @@ public class Registro extends JFrame {
 		            }
 
 		            // Cerrar conexión y recursos
+		            resulset.close();
 		            statement.close();
 
 		        } catch (Exception x) {

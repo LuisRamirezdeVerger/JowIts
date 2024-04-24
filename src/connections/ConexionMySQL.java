@@ -112,10 +112,8 @@ public class ConexionMySQL {
         int fila = stmt.executeUpdate(consulta);
 
         return fila;
-    }
-    
- // Método para crear una sentencia preparada
-    public static PreparedStatement prepararStatement(String sql) throws SQLException {
-        return connection.prepareStatement(sql);
+
     }
 }
+    
+ 

@@ -11,6 +11,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -178,7 +179,7 @@ public class Registro extends JFrame {
 		//BOTÓN DE ATRÁS
 		//Imagen que vamos a usar
 				ImageIcon iconoFlecha = new ImageIcon ("flechaFruta.png");
-				JButton btnFlecha = new JButton(new ImageIcon("\\Imagenes\flechaFruta.png"));
+				JButton btnFlecha = new JButton(iconoFlecha);
 //				btnFlecha.addActionListener(new ActionListener() {
 //		            public void actionPerformed(ActionEvent e) {
 //		                // Agrega aquí la funcionalidad que deseas cuando se presione el botón
@@ -205,10 +206,32 @@ public class Registro extends JFrame {
 		JButton btnNewButton = new JButton("Registrarme");
 		btnNewButton.setBounds(545, 497, 148, 65);
 		contentPane.add(btnNewButton);
+		String textoNombre = dtrpnNombre.getText();
+		String textoDNI = dtrpnDni.getText();
+		 
+		//Al trabajar con contraseñas, es más seguro manejarlas como arrays de caracteres en lugar de como cadenas de texto
+		char[] passwordChars2 = passwordField_1.getPassword();
+		String textoPassword2 = new String(passwordChars2);
+		
+		ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+		try { 
+			connectInv.conectar();
+			System.out.println("Conectado a la BBDD");
+			// Tenemos errores a la hora de insertar, ya que antes de poder crear un Usuario, habría que crear la empresa y modificar los valores de 'consulta'
+			//String consulta = "INSERT INTO Usuario (nombreUsuario, dniUsuario, passUsuario, Empresa_CIF, Empresa_CIF1) VALUES ('" + textoNombre + "', '" + textoDNI + "', '" + textoPassword2 + "', '', '')";
+			String consulta = "INSERT INTO Usuario (nombreUsuario, dniUsuario, passUsuario, Empresa_CIF) VALUES ('" + textoNombre + "', '" + textoDNI + "', '" + textoPassword2 + "', 'valor_CIF_existente')";
+
+	        int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
+	        System.out.println("Fila insertada!");
+	        connectInv.desconectar();
+	        System.out.println("desConectado de la BBDD");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		btnNewButton.addActionListener(new ActionListener() {
 
-			ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
@@ -227,42 +250,7 @@ public class Registro extends JFrame {
 				} else {
 				System.out.println(textoNombre+" "+textoDNI+" "+textoPassword1+" "+textoPassword2);
 				}
-				
-				try {
-
-		            // Sentencia SQL de inserción
-		            
-		            String consulta = "INSERT INTO usuarios (nombreUsuario, dniUsuario, passUsuario) VALUES (?, ?, ?)";
-
-		            // Preparar la sentencia
-		            PreparedStatement statement = connectInv.ejecutarInsertDeleteUpdate(consulta);
-		            
-		            ResultSet resulset = statement.executeQuery();
-		            statement.setString(1, textoNombre);
-		            statement.setString(2, textoDNI);
-		            statement.setString(3, textoPassword2);
-		         
-		            
-		            // Ejecutar la sentencia
-		            int filasInsertadas = statement.executeUpdate();
-		            
-		            if (filasInsertadas > 0) {
-		                System.out.println("Los datos han sido insertados exitosamente en la base de datos.");
-		            } else {
-		                System.out.println("No se han insertado datos en la base de datos.");
-		            }
-
-		            // Cerrar conexión y recursos
-		            resulset.close();
-		            statement.close();
-
-		        } catch (Exception x) {
-		            x.printStackTrace();
-		            System.out.println("Error al intentar insertar datos en la base de datos.");
-		        }
 			}
         });
-		
-
 	}
 }

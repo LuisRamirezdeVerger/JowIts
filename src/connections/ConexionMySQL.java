@@ -24,7 +24,7 @@ public class ConexionMySQL {
     // Contraseña del usuario de la base de datos
     private String PASS;
     // Objeto donde se almacenará nuestra conexión
-    private Connection connection;
+    private static Connection connection;
     // Indica que está en localhost
     private String HOST;
     // Zona horaria
@@ -115,7 +115,7 @@ public class ConexionMySQL {
     }
     
  // Método para crear una sentencia preparada
-    public PreparedStatement prepararStatement(String sql) throws SQLException {
+    public static PreparedStatement prepararStatement(String sql) throws SQLException {
         return connection.prepareStatement(sql);
     }
 }

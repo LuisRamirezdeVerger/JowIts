@@ -205,8 +205,7 @@ public class Registro extends JFrame {
 		btnNewButton.setBounds(545, 497, 148, 65);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
-		ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
-		
+
 	
 			
 			@Override
@@ -235,7 +234,7 @@ public class Registro extends JFrame {
 		            String sql = "INSERT INTO usuarios (nombreUsuario, dniUsuario, passUsuario) VALUES (?, ?, ?)";
 
 		            // Preparar la sentencia
-		            PreparedStatement statement = connectInv.prepararStatement(sql);
+		            PreparedStatement statement = connections.ConexionMySQL.prepararStatement(sql);
 		            statement.setString(1, textoNombre);
 		            statement.setString(2, textoDNI);
 		            statement.setString(3, textoPassword2);

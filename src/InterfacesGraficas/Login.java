@@ -156,10 +156,8 @@ public class Login extends JFrame {
 		
 		btnConectar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Introducir conexión a la DDBB aqu�
+				//DDBB aquí
 				ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
-				
-				Scanner sc = new Scanner (System.in);
 				try {
 					connectInv.conectar();
 					System.out.println("Conexión establecida. ");
@@ -181,16 +179,7 @@ public class Login extends JFrame {
 					e1.printStackTrace();
 				} finally {
 					
-				}
-				sc.close();
-				try {
-					connectInv.desconectar();
-					System.out.println("Desconectando :D ");
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			}
-			
+				} }
 				
 			//Conexión bbdd finalizada
 		});
@@ -219,6 +208,34 @@ public class Login extends JFrame {
 		getContentPane().add(btnFlecha, BorderLayout.CENTER);
 		btnFlecha.setBounds(52, 447, 174, 89);
 		contentPane.add(btnFlecha);
+		
+		JButton btnConectar_1 = new JButton("desConectar");
+		
+		
+		btnConectar_1.setToolTipText("Pulsa para desconectarte de tu cuenta");
+		btnConectar_1.setForeground(Color.BLACK);
+		btnConectar_1.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 15));
+		btnConectar_1.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+		btnConectar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (connectInv != null) {
+					try {
+                        connectInv.desconectar();
+                        System.out.println("Desconectando :D ");
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "Error al intentar desconectar de la base de datos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } 
+            }
+			
+				
+			//Conexión bbdd finalizada
+		});
+		btnConectar_1.setBounds(746, 588, 376, 60);
+		contentPane.add(btnConectar_1);
 		
 	}
 }

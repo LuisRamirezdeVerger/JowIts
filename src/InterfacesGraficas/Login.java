@@ -180,15 +180,17 @@ public class Login extends JFrame {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				} finally {
-					try {
-						connectInv.desconectar();
-						System.out.println("Desconectando :D ");
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
+					
 				}
 				sc.close();
+				try {
+					connectInv.desconectar();
+					System.out.println("Desconectando :D ");
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
+			
 				
 			//Conexión bbdd finalizada
 		});

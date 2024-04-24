@@ -1,5 +1,7 @@
 package interfacesGraficas;
 
+import java.sql.Connection;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -15,7 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import connections.ConexionMySQL;
+import connections.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
@@ -44,6 +46,16 @@ public class Registro extends JFrame {
 			}
 		});
 	}
+	 ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+
+	
+	// Método para obtener la conexión
+    public ConexionMySQL obtenerConexion() {
+        return obtenerConexion();
+        
+    }
+    
+    
 
 	/**
 	 * Create the frame.
@@ -162,7 +174,26 @@ public class Registro extends JFrame {
 		lblNewLabel_1.setBounds(784, 391, 116, 36);
 		contentPane.add(lblNewLabel_1);
 		
-		
+		//BOTÓN DE ATRÁS
+		//Imagen que vamos a usar
+				ImageIcon iconoFlecha = new ImageIcon ("flechaFruta.png");
+				JButton btnFlecha = new JButton(new ImageIcon("\\Imagenes\flechaFruta.png"));
+//				btnFlecha.addActionListener(new ActionListener() {
+//		            public void actionPerformed(ActionEvent e) {
+//		                // Agrega aquí la funcionalidad que deseas cuando se presione el botón
+//		                JOptionPane.showMessageDialog(btnFlecha, "¡Botón presionado!");
+//		            }
+//		        });
+				btnFlecha.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		                MainFrame mainFrame = new MainFrame();
+		                mainFrame.setVisible(true);
+		            	
+		            }
+		        });
+				getContentPane().add(btnFlecha, BorderLayout.CENTER);
+				btnFlecha.setBounds(52, 447, 174, 89);
+				contentPane.add(btnFlecha);
 		
 		
 		/*
@@ -174,16 +205,21 @@ public class Registro extends JFrame {
 		btnNewButton.setBounds(545, 497, 148, 65);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
-			
+		ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+		
+	
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				
 				String textoNombre = dtrpnNombre.getText();
 				String textoDNI = dtrpnDni.getText();
-				String textoPassword1 = passwordField.getText();
-				String textoPassword2 = passwordField_1.getText();
+
+				//Al trabajar con contraseñas, es más seguro manejarlas como arrays de caracteres en lugar de como cadenas de texto
+				char[] passwordChars1 = passwordField.getPassword();
+				String textoPassword1 = new String(passwordChars1);
+				char[] passwordChars2 = passwordField_1.getPassword();
+				String textoPassword2 = new String(passwordChars2);
 				
 				
 				if (!textoPassword1.equals(textoPassword2)) {
@@ -193,14 +229,13 @@ public class Registro extends JFrame {
 				}
 				
 				try {
-					//Modificar aquí
-					ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
-		            
+
 		            // Sentencia SQL de inserción
-		            String sql = "INSERT INTO tu_tabla (columna1, columna2, columna3) VALUES (?, ?, ?)";
-		            
+		            //String sql = "INSERT INTO tu_tabla (columna1, columna2, columna3) VALUES (?, ?, ?)";
+		            String sql = "INSERT INTO usuarios (nombreUsuario, dniUsuario, passUsuario) VALUES (?, ?, ?)";
+
 		            // Preparar la sentencia
-		            PreparedStatement statement = connectInv.prepareStatement(sql);
+		            PreparedStatement statement = connectInv.prepararStatement(sql);
 		            statement.setString(1, textoNombre);
 		            statement.setString(2, textoDNI);
 		            statement.setString(3, textoPassword2);

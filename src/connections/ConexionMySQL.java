@@ -1,5 +1,7 @@
 package connections;
 
+import java.sql.PreparedStatement;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -110,5 +112,10 @@ public class ConexionMySQL {
         int fila = stmt.executeUpdate(consulta);
 
         return fila;
+    }
+    
+ // Método para crear una sentencia preparada
+    public PreparedStatement prepararStatement(String sql) throws SQLException {
+        return connection.prepareStatement(sql);
     }
 }

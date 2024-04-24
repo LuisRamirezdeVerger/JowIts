@@ -65,8 +65,8 @@ public class MainFrame extends JFrame {
 		btnRegistrate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Cambiar "login" por registro
-				Login login = new Login();
-				login.setVisible(true);
+				Registro registro = new Registro();
+				registro.setVisible(true);
 			}
 		});
 		contentPane.add(btnRegistrate);

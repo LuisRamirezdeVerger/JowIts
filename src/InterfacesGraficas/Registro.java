@@ -193,6 +193,7 @@ public class Registro extends JFrame {
 				}
 				
 				try {
+					//Modificar aquí
 					ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
 		            
 		            // Sentencia SQL de inserción
@@ -216,7 +217,7 @@ public class Registro extends JFrame {
 
 		            // Cerrar conexión y recursos
 		            statement.close();
-		            connectInv.close();
+
 		        } catch (Exception x) {
 		            x.printStackTrace();
 		            System.out.println("Error al intentar insertar datos en la base de datos.");

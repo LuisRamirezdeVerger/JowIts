@@ -1,4 +1,4 @@
-package interfacesGraficas;
+package InterfacesGraficas;
 
 import java.awt.Color;
 import java.awt.EventQueue;

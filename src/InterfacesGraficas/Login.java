@@ -1,4 +1,4 @@
-package interfacesGraficas;
+package InterfacesGraficas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -30,7 +30,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
 import connections.ConexionMySQL;
-import java.awt.Component;
 
 public class Login extends JFrame {
 

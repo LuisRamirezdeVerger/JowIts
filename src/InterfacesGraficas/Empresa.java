@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -23,6 +24,7 @@ import javax.swing.border.EtchedBorder;
 
 import componentes.RoundBorder;
 import componentes.RoundedButton;
+import connections.ConexionMySQL;
 
 public class Empresa extends JFrame {
 
@@ -70,9 +72,34 @@ public class Empresa extends JFrame {
 
 			}
 		});
+		
 		btnAnadirEmpresa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnAnadirEmpresa.setBackground(Color.red);
+				btnAnadirEmpresa.addActionListener(new ActionListener() {
+				String textoCif = txtCif.getText();
+				String textoEmpresa = btnAnadirEmpresa.getText();
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+				ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+		try { 
+			connectInv.conectar();
+			System.out.println("Conectado a la BBDD");
+			// Tenemos errores a la hora de insertar, ya que antes de poder crear un Usuario, habría que crear la empresa y modificar los valores de 'consulta'
+			//String consulta = "INSERT INTO Usuario (nombreUsuario, dniUsuario, passUsuario, Empresa_CIF, Empresa_CIF1) VALUES ('" + textoNombre + "', '" + textoDNI + "', '" + textoPassword2 + "', '', '')";
+			String consulta = "INSERT INTO Empresa (CIF, nombreEmpresa) VALUES ('" + textoCif + "', '" + textoEmpresa + "')";
+	        int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
+	        System.out.println("Fila insertada!");
+	        connectInv.desconectar();
+	        System.out.println("desConectado de la BBDD");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+							
+					}
+				});
 				System.out.println("Nueva empresa añadida");
 			}
 		});
@@ -106,13 +133,6 @@ public class Empresa extends JFrame {
 		contentPane.add(panelTitulo);
 
 		JTextField dtrpnNombreUsuario = new JTextField();
-		dtrpnNombreUsuario.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				// Creamos evento que al hacer click, elimine el texto que haya
-				dtrpnNombreUsuario.setText("");
-			}
-		});
 		dtrpnNombreUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		dtrpnNombreUsuario.setText("Introduce empresa");
 		dtrpnNombreUsuario.setBounds(154, 75, 120, 30);

@@ -102,7 +102,7 @@ public class Registro extends JFrame {
 		 */
 		
 		JEditorPane dtrpnDni = new JEditorPane();
-		dtrpnDni.setText("DNI");
+		dtrpnDni.setText("10101010X");
 		dtrpnDni.setBounds(283, 418, 200, 30);
 		contentPane.add(dtrpnDni);
 		
@@ -168,13 +168,13 @@ public class Registro extends JFrame {
 		
 		
 		
-		JLabel lblNewLabel = new JLabel("Contraseña");
-		lblNewLabel.setBounds(784, 339, 116, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblPass = new JLabel("Contraseña");
+		lblPass.setBounds(784, 339, 116, 14);
+		contentPane.add(lblPass);
 		
-		JLabel lblNewLabel_1 = new JLabel("Confirmar Contraseña");
-		lblNewLabel_1.setBounds(784, 391, 116, 36);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblConfCon = new JLabel("Confirmar Contraseña");
+		lblConfCon.setBounds(784, 391, 116, 36);
+		contentPane.add(lblConfCon);
 		
 		//BOTÓN DE ATRÁS
 		//Imagen que vamos a usar
@@ -203,47 +203,62 @@ public class Registro extends JFrame {
 		 */
 		
 		
-		JButton btnNewButton = new JButton("Registrarme");
-		btnNewButton.setBounds(545, 497, 148, 65);
-		contentPane.add(btnNewButton);
-		String textoNombre = dtrpnNombre.getText();
-		String textoDNI = dtrpnDni.getText();
+		JButton btnRegistro = new JButton("Registrarme");
+		btnRegistro.setBounds(545, 497, 148, 65);
+		contentPane.add(btnRegistro);
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(283, 339, 116, 14);
+		contentPane.add(lblNombre);
+		
+		JLabel lblDNI = new JLabel("DNI");
+		lblDNI.setBounds(283, 391, 116, 36);
+		contentPane.add(lblDNI);
+		
+		JLabel lblCIF = new JLabel("CIF Empresa registrada");
+		lblCIF.setBounds(528, 370, 116, 36);
+		contentPane.add(lblCIF);
+		
+		JEditorPane dtrpnCIF = new JEditorPane();
+		dtrpnCIF.setText("X-01010101");
+		dtrpnCIF.setBounds(528, 397, 200, 30);
+		contentPane.add(dtrpnCIF);
 		 
-		//Al trabajar con contraseñas, es más seguro manejarlas como arrays de caracteres en lugar de como cadenas de texto
-		char[] passwordChars2 = passwordField_1.getPassword();
-		String textoPassword2 = new String(passwordChars2);
 		
-		ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
-		try { 
-			connectInv.conectar();
-			System.out.println("Conectado a la BBDD");
-			// Tenemos errores a la hora de insertar, ya que antes de poder crear un Usuario, habría que crear la empresa y modificar los valores de 'consulta'
-			//String consulta = "INSERT INTO Usuario (nombreUsuario, dniUsuario, passUsuario, Empresa_CIF, Empresa_CIF1) VALUES ('" + textoNombre + "', '" + textoDNI + "', '" + textoPassword2 + "', '', '')";
-			String consulta = "INSERT INTO Usuario (nombreUsuario, dniUsuario, passUsuario, Empresa_CIF) VALUES ('" + textoNombre + "', '" + textoDNI + "', '" + textoPassword2 + "', 'valor_CIF_existente')";
-
-	        int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
-	        System.out.println("Fila insertada!");
-	        connectInv.desconectar();
-	        System.out.println("desConectado de la BBDD");
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		
-		btnNewButton.addActionListener(new ActionListener() {
+		btnRegistro.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				String textoNombre = dtrpnNombre.getText();
 				String textoDNI = dtrpnDni.getText();
+				String textoCIF = dtrpnCIF.getText();
+				String textoCIF2 = dtrpnCIF.getText();
 				
 				//Al trabajar con contraseñas, es más seguro manejarlas como arrays de caracteres en lugar de como cadenas de texto
 				char[] passwordChars1 = passwordField.getPassword();
 				String textoPassword1 = new String(passwordChars1);
 				char[] passwordChars2 = passwordField_1.getPassword();
 				String textoPassword2 = new String(passwordChars2);
+		
 				
+				ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+				try { 
+					connectInv.conectar();
+					System.out.println("Conectado a la BBDD");
+					// Tenemos errores a la hora de insertar, ya que antes de poder crear un Usuario, habría que crear la empresa y modificar los valores de 'consulta'
+					//String consulta = "INSERT INTO Usuario (nombreUsuario, dniUsuario, passUsuario, Empresa_CIF, Empresa_CIF1) VALUES ('" + textoNombre + "', '" + textoDNI + "', '" + textoPassword2 + "', '', '')";
+					String consulta = "INSERT INTO Usuario (nombreUsuario, dniUsuario, passUsuario, Empresa_CIF, Empresa_CIF1) VALUES ('" + textoNombre + "', '" + textoDNI + "', '" + textoPassword2 + "', '" + textoCIF + " ', '" + textoCIF2 + "')";
+
+			        int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
+			        System.out.println("Fila insertada!");
+			        connectInv.desconectar();
+			        System.out.println("desConectado de la BBDD");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				if (!textoPassword1.equals(textoPassword2)) {
 					JOptionPane.showMessageDialog(passwordField, "Las contraseñas no son iguales");

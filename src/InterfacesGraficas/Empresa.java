@@ -31,6 +31,7 @@ public class Empresa extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtCif;
+	private JTextField txtIntroduceEmpresa;
 
 	/**
 	 * Launch the application.
@@ -63,45 +64,38 @@ public class Empresa extends JFrame {
 		contentPane.setLayout(null);
 
 		RoundedButton btnAnadirEmpresa = new RoundedButton("Añadir Empresa", Color.gray, 50);
-		//No sé porqué, pero añadiendo un background, no se ve el cuadrado del boton NO redondeado 
+		// No sé porqué, pero añadiendo un background, no se ve el cuadrado del boton NO
+		// redondeado
 		btnAnadirEmpresa.setBackground(Color.red);
 		btnAnadirEmpresa.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				btnAnadirEmpresa.setText("Creando nueva empresa. "); 
+				btnAnadirEmpresa.setText("Creando nueva empresa. ");
 
 			}
 		});
-		
+
 		btnAnadirEmpresa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnAnadirEmpresa.setBackground(Color.red);
-				btnAnadirEmpresa.addActionListener(new ActionListener() {
 				String textoCif = txtCif.getText();
-				String textoEmpresa = btnAnadirEmpresa.getText();
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						
+				String textoEmpresa = txtIntroduceEmpresa.getText();
+				
 				ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
-		try { 
-			connectInv.conectar();
-			System.out.println("Conectado a la BBDD");
-			// Tenemos errores a la hora de insertar, ya que antes de poder crear un Usuario, habría que crear la empresa y modificar los valores de 'consulta'
-			//String consulta = "INSERT INTO Usuario (nombreUsuario, dniUsuario, passUsuario, Empresa_CIF, Empresa_CIF1) VALUES ('" + textoNombre + "', '" + textoDNI + "', '" + textoPassword2 + "', '', '')";
-			String consulta = "INSERT INTO Empresa (CIF, nombreEmpresa) VALUES ('" + textoCif + "', '" + textoEmpresa + "')";
-	        int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
-	        System.out.println("Fila insertada!");
-	        connectInv.desconectar();
-	        System.out.println("desConectado de la BBDD");
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-							
-					}
-				});
-				System.out.println("Nueva empresa añadida");
+				try {
+					connectInv.conectar();
+					System.out.println("Conectado a la BBDD");
+					String consulta = "INSERT INTO Empresa (CIF, nombreEmpresa) VALUES ('" + textoCif + "', '"
+							+ textoEmpresa + "')";
+					int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
+					System.out.println("Fila insertada!");
+					connectInv.desconectar();
+					System.out.println("desConectado de la BBDD");
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
+
 		});
 
 		btnAnadirEmpresa.setBounds(90, 182, 241, 53);
@@ -132,13 +126,6 @@ public class Empresa extends JFrame {
 		panelTitulo.setBounds(10, 11, 414, 39);
 		contentPane.add(panelTitulo);
 
-		JTextField dtrpnNombreUsuario = new JTextField();
-		dtrpnNombreUsuario.setHorizontalAlignment(SwingConstants.CENTER);
-		dtrpnNombreUsuario.setText("Introduce empresa");
-		dtrpnNombreUsuario.setBounds(154, 75, 120, 30);
-		dtrpnNombreUsuario.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-		contentPane.add(dtrpnNombreUsuario);
-
 		txtCif = new JTextField("CIF");
 		txtCif.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCif.setBounds(154, 129, 120, 30);
@@ -157,6 +144,11 @@ public class Empresa extends JFrame {
 		lblFondoLogo.setBackground(new Color(0, 0, 0, 80));
 		ImageIcon icono = new ImageIcon(getIcono.getImage().getScaledInstance(lblFondoLogo.getWidth(),
 				lblFondoLogo.getHeight(), Image.SCALE_SMOOTH));
+		
+		txtIntroduceEmpresa = new JTextField("Introduce Empresa");
+		txtIntroduceEmpresa.setHorizontalAlignment(SwingConstants.CENTER);
+		txtIntroduceEmpresa.setBounds(154, 75, 120, 30);
+		contentPane.add(txtIntroduceEmpresa);
 		lblFondoLogo.setIcon(icono);
 		contentPane.add(lblFondoLogo);
 

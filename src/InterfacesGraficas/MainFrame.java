@@ -64,7 +64,7 @@ public class MainFrame extends JFrame {
 		btnRegistrate.setBounds(814, 347, 350, 116);
 		btnRegistrate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Cambiar "login" por registro
+				//Hay que cerrar el frame al pulsar también
 				Registro registro = new Registro();
 				registro.setVisible(true);
 			}

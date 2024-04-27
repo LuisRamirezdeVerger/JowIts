@@ -14,8 +14,10 @@ import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -26,7 +28,7 @@ import componentes.RoundBorder;
 import componentes.RoundedButton;
 import connections.ConexionMySQL;
 
-public class Empresa extends JFrame {
+public class RegistroEmpresa extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -40,7 +42,7 @@ public class Empresa extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Empresa frame = new Empresa();
+					RegistroEmpresa frame = new RegistroEmpresa();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,9 +54,9 @@ public class Empresa extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Empresa() {
+	public RegistroEmpresa() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1280, 720);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 153));
@@ -88,6 +90,9 @@ public class Empresa extends JFrame {
 					String consulta = "INSERT INTO Empresa (CIF, nombreEmpresa) VALUES ('" + textoCif + "', '"
 							+ textoEmpresa + "')";
 					int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
+
+		                JOptionPane.showMessageDialog(btnAnadirEmpresa, "Empresa registrada con éxito. ");
+		            
 					System.out.println("Fila insertada!");
 					connectInv.desconectar();
 					System.out.println("desConectado de la BBDD");
@@ -98,8 +103,24 @@ public class Empresa extends JFrame {
 
 		});
 
-		btnAnadirEmpresa.setBounds(90, 182, 241, 53);
+		btnAnadirEmpresa.setBounds(514, 428, 241, 53);
 		RoundBorder roundBorder = new RoundBorder(50);
+		
+		//Botón de atrás
+				JButton btnFlecha = new JButton();
+				btnFlecha.setToolTipText("Pulsa para volver al menú principal");
+				btnFlecha.setText("Atrás");
+				btnFlecha.setSize(116, 50);
+				btnFlecha.setLocation(61, 526);
+				btnFlecha.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		                MainFrame mainFrame = new MainFrame();
+		                mainFrame.setVisible(true);
+		            	dispose();
+		            }
+		        });
+				contentPane.add(btnFlecha);
+				btnFlecha.setVisible(true);
 		btnAnadirEmpresa.setBorder(roundBorder);
 		contentPane.add(btnAnadirEmpresa);
 
@@ -115,7 +136,7 @@ public class Empresa extends JFrame {
 		lblTituloEmpresa.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTituloEmpresa.setBackground(SystemColor.textHighlightText);
 		lblTituloEmpresa.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED)); // Agrega un borde en relieve
-		lblTituloEmpresa.setBounds(10, 11, 414, 39);
+		lblTituloEmpresa.setBounds(10, 11, 1244, 94);
 		contentPane.add(lblTituloEmpresa);
 
 		// Panel para dar fondo transparente al título
@@ -123,12 +144,12 @@ public class Empresa extends JFrame {
 		panelTitulo.setBackground(new Color(0, 0, 0, 90)); // Fondo semitransparente
 		panelTitulo.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED)); // Borde en relieve
 		panelTitulo.setLayout(new BorderLayout()); // Utilizamos BorderLayout para alinear el título en el centro
-		panelTitulo.setBounds(10, 11, 414, 39);
+		panelTitulo.setBounds(10, 11, 1244, 94);
 		contentPane.add(panelTitulo);
 
 		txtCif = new JTextField("CIF");
 		txtCif.setHorizontalAlignment(SwingConstants.CENTER);
-		txtCif.setBounds(154, 129, 120, 30);
+		txtCif.setBounds(525, 359, 221, 30);
 		txtCif.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -140,14 +161,20 @@ public class Empresa extends JFrame {
 		ImageIcon getIcono = new ImageIcon(getClass().getResource("/imagenes/logo2.png"));
 
 		JLabel lblFondoLogo = new JLabel("FondoImg");
-		lblFondoLogo.setBounds(20, 11, 404, 239);
+		lblFondoLogo.setBounds(224, 69, 815, 543);
 		lblFondoLogo.setBackground(new Color(0, 0, 0, 80));
 		ImageIcon icono = new ImageIcon(getIcono.getImage().getScaledInstance(lblFondoLogo.getWidth(),
 				lblFondoLogo.getHeight(), Image.SCALE_SMOOTH));
 		
 		txtIntroduceEmpresa = new JTextField("Introduce Empresa");
 		txtIntroduceEmpresa.setHorizontalAlignment(SwingConstants.CENTER);
-		txtIntroduceEmpresa.setBounds(154, 75, 120, 30);
+		txtIntroduceEmpresa.setBounds(525, 269, 221, 30);
+		txtIntroduceEmpresa.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				txtIntroduceEmpresa.setText("");
+			}
+		});
 		contentPane.add(txtIntroduceEmpresa);
 		lblFondoLogo.setIcon(icono);
 		contentPane.add(lblFondoLogo);

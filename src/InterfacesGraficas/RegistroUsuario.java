@@ -26,7 +26,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
-public class Registro extends JFrame {
+public class RegistroUsuario extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -40,7 +40,7 @@ public class Registro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Registro frame = new Registro();
+					RegistroUsuario frame = new RegistroUsuario();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +62,7 @@ public class Registro extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Registro() {
+	public RegistroUsuario() {
 		setTitle("REGISTRO");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 100, 1280, 720);
@@ -167,7 +167,6 @@ public class Registro extends JFrame {
 		contentPane.add(passwordField_1);
 		
 		
-		
 		JLabel lblPass = new JLabel("Contraseña");
 		lblPass.setBounds(784, 339, 116, 14);
 		contentPane.add(lblPass);
@@ -177,20 +176,12 @@ public class Registro extends JFrame {
 		contentPane.add(lblConfCon);
 		
 		//BOTÓN DE ATRÁS
-		//Imagen que vamos a usar
-				ImageIcon iconoFlecha = new ImageIcon ("flechaFruta.png");
-				JButton btnFlecha = new JButton(iconoFlecha);
-//				btnFlecha.addActionListener(new ActionListener() {
-//		            public void actionPerformed(ActionEvent e) {
-//		                // Agrega aquí la funcionalidad que deseas cuando se presione el botón
-//		                JOptionPane.showMessageDialog(btnFlecha, "¡Botón presionado!");
-//		            }
-//		        });
+				JButton btnFlecha = new JButton();
 				btnFlecha.addActionListener(new ActionListener() {
 		            public void actionPerformed(ActionEvent e) {
 		                MainFrame mainFrame = new MainFrame();
 		                mainFrame.setVisible(true);
-		            	
+		                dispose();
 		            }
 		        });
 				getContentPane().add(btnFlecha, BorderLayout.CENTER);
@@ -227,14 +218,12 @@ public class Registro extends JFrame {
 		
 		
 		btnRegistro.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				String textoNombre = dtrpnNombre.getText();
 				String textoDNI = dtrpnDni.getText();
 				String textoCIF = dtrpnCIF.getText();
-				String textoCIF2 = dtrpnCIF.getText();
 				
 				//Al trabajar con contraseñas, es más seguro manejarlas como arrays de caracteres en lugar de como cadenas de texto
 				char[] passwordChars1 = passwordField.getPassword();
@@ -247,23 +236,27 @@ public class Registro extends JFrame {
 				try { 
 					connectInv.conectar();
 					System.out.println("Conectado a la BBDD");
-					// Tenemos errores a la hora de insertar, ya que antes de poder crear un Usuario, habría que crear la empresa y modificar los valores de 'consulta'
-					//String consulta = "INSERT INTO Usuario (nombreUsuario, dniUsuario, passUsuario, Empresa_CIF, Empresa_CIF1) VALUES ('" + textoNombre + "', '" + textoDNI + "', '" + textoPassword2 + "', '', '')";
-					String consulta = "INSERT INTO Usuario (nombreUsuario, dniUsuario, passUsuario, Empresa_CIF, Empresa_CIF1) VALUES ('" + textoNombre + "', '" + textoDNI + "', '" + textoPassword2 + "', '" + textoCIF + " ', '" + textoCIF2 + "')";
-
+					String consulta = "INSERT INTO Usuario (nombreUsuario, dniUsuario, passUsuario, Empresa_CIF) VALUES ('" + textoNombre + "', '" + textoDNI + "', '" + textoPassword2 + "', '" + textoCIF + "')";
 			        int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
 			        System.out.println("Fila insertada!");
+			        JOptionPane.showMessageDialog(contentPane, "Registro existoso!");
 			        connectInv.desconectar();
 			        System.out.println("desConectado de la BBDD");
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+					 String mensajeError = e1.getMessage();
+			            if (mensajeError.contains("foreign key constraint fails")) {
+			                JOptionPane.showMessageDialog(contentPane, "La empresa con CIF '" + textoCIF + "' no existe en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+			            } else if (mensajeError.contains("unique constraint")) {
+			                JOptionPane.showMessageDialog(contentPane, "El usuario con DNI '" + textoDNI + "' ya existe en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+			            } else if (mensajeError.contains("duplicate entry")) {
+			                JOptionPane.showMessageDialog(contentPane, "El usuario con DNI '" + textoDNI + "' ya existe en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+			            } else {
+			                JOptionPane.showMessageDialog(contentPane, "Error intentado realizar el registro en la base de datos: " + mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
+			            }
+			        }
 				
 				if (!textoPassword1.equals(textoPassword2)) {
 					JOptionPane.showMessageDialog(passwordField, "Las contraseñas no son iguales");
-				} else {
-				System.out.println(textoNombre+" "+textoDNI+" "+textoPassword1+" "+textoPassword2);
 				}
 			}
         });

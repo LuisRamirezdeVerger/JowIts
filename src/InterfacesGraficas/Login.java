@@ -189,20 +189,13 @@ public class Login extends JFrame {
 		btnConectar.setBounds(444, 513, 376, 60);
 		contentPane.add(btnConectar);
 		
-		//Imagen que vamos a usar
-		ImageIcon iconoFlecha = new ImageIcon ("flechaFruta.png");
-		JButton btnFlecha = new JButton(new ImageIcon("\\Imagenes\flechaFruta.png"));
-//		btnFlecha.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                // Agrega aquí la funcionalidad que deseas cuando se presione el botón
-//                JOptionPane.showMessageDialog(btnFlecha, "¡Botón presionado!");
-//            }
-//        });
+		//Botón de atrás
+		JButton btnFlecha = new JButton();
 		btnFlecha.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 MainFrame mainFrame = new MainFrame();
                 mainFrame.setVisible(true);
-            	
+            	dispose();
             }
         });
 		getContentPane().add(btnFlecha, BorderLayout.CENTER);

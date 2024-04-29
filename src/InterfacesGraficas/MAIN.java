@@ -102,6 +102,13 @@ public class Main extends JFrame {
 		contentPane.add(btnAtras);
 		
 		JButton btnRegistrarProducto = new JButton("Registrar Nuevo Producto");
+		btnRegistrarProducto.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                RegistroNuevoProducto nuevoProducto = new RegistroNuevoProducto();
+                nuevoProducto.setVisible(true);
+                dispose();
+            }
+        });
 		btnRegistrarProducto.setBounds(52, 260, 174, 89);
 		contentPane.add(btnRegistrarProducto);
 		
@@ -110,18 +117,17 @@ public class Main extends JFrame {
 		contentPane.add(btnRegistrarEmpleado);
 		
 		JButton btnRegistrarCategoria = new JButton("Registrar Nueva Categoría");
+		btnRegistrarCategoria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                CrearCategoria crearCategoria = new CrearCategoria();
+                crearCategoria.setVisible(true);
+                dispose();
+            }
+        });
 		btnRegistrarCategoria.setBounds(984, 127, 174, 89);
 		contentPane.add(btnRegistrarCategoria);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 	}
 }

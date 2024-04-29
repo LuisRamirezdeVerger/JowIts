@@ -3,8 +3,11 @@ package interfacesGraficas;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -60,6 +63,19 @@ public class CrearCategoria extends JFrame {
 		lblImagen.setIcon(img2);
 		contentPane.add(lblImagen);
 		contentPane.setLayout(null);
+		
+		//Crear botón de ir atrás
+
+				JButton btnAtras = new JButton("Atrás");
+				btnAtras.setBounds(63, 525, 206, 68);
+				btnAtras.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Main main = new Main();
+						main.setVisible(true);
+						dispose();
+					}
+				});
+				contentPane.add(btnAtras);
 	}
 
 }

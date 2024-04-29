@@ -30,6 +30,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+import componentes.Usuario;
 import connections.ConexionMySQL;
 
 public class Login extends JFrame {
@@ -156,10 +157,16 @@ public class Login extends JFrame {
 					connectInv.conectar();
 					System.out.println("Conexión establecida. ");
 					
-					String consulta = "SELECT * FROM Usuario WHERE nombreUsuario = '" + txtNombreUsuario.getText() + "' AND contrasena = '" + new String(passwordField.getPassword()) + "'";
-					//ResultSet Resultado = connectInv.ejecutarInsertDeleteUpdate("SELECT * FROM Usuario ");
-					ResultSet resulSet = connectInv.ejecutarSelect(consulta);
+					String consulta = "SELECT * FROM Usuario WHERE nombreUsuario = '" + txtNombreUsuario.getText() + "' AND passUsuario = '" + new String(passwordField.getPassword()) + "'";
+					ResultSet resultSet = connectInv.ejecutarSelect(consulta);
 					
+					if(resultSet.next()) {
+						Usuario.setNombreUsuario(resultSet.getString("nombreUsuario"));
+						Usuario.setPassUsuario(resultSet.getString("passUsuario"));
+						 MAIN main = new MAIN();
+	                        main.setVisible(true);
+	                        dispose();
+					}
 					
 					
 				} catch (SQLException e1) {

@@ -12,6 +12,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -77,18 +78,11 @@ public class Login extends JFrame {
 		JEditorPane editorPane = new JEditorPane();
 		contentPane.add(editorPane);
 		
-		JTextField dtrpnNombreUsuario = new JTextField();
-		dtrpnNombreUsuario.setBackground(new Color(94, 253, 102));
-		dtrpnNombreUsuario.setText("Usuario");
-		dtrpnNombreUsuario.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				//Creamos evento que al hacer click, elimine el texto que haya.
-				dtrpnNombreUsuario.setText("");
-			}
-		});
-		dtrpnNombreUsuario.setBounds(403, 419, 202, 40);
-		contentPane.add(dtrpnNombreUsuario);
+		JTextField txtNombreUsuario = new JTextField();
+		txtNombreUsuario.setBackground(new Color(94, 253, 102));
+		txtNombreUsuario.setText("Usuario");
+		txtNombreUsuario.setBounds(403, 419, 202, 40);
+		contentPane.add(txtNombreUsuario);
 		
 		JLabel lblImagen = new JLabel("Logo");
 		lblImagen.setBounds(450, 11, 343, 263);
@@ -162,17 +156,10 @@ public class Login extends JFrame {
 					connectInv.conectar();
 					System.out.println("Conexión establecida. ");
 					
+					String consulta = "SELECT * FROM Usuario WHERE nombreUsuario = '" + txtNombreUsuario.getText() + "' AND contrasena = '" + new String(passwordField.getPassword()) + "'";
+					//ResultSet Resultado = connectInv.ejecutarInsertDeleteUpdate("SELECT * FROM Usuario ");
+					ResultSet resulSet = connectInv.ejecutarSelect(consulta);
 					
-					// Ejemplo de sentencia pre-definida
-					/*String sentencia = "INSERT INTO Persona (Nombre, Edad) VALUES ('Wito', '32')";
-					connect.ejecutarInsertDeleteUpdate(sentencia);*/
-					// Ejemplo de sentencia definida por el usuario
-					/* System.out.println("Introduzca nombre: ");
-					String nombre = sc.next();
-					System.out.println("Introduzca edad: ");
-					int edad = sc.nextInt();
-					String sentenciaTeclado = "INSERT INTO Persona (Nombre, Edad) VALUES ('"+ nombre +"', '"+ edad +"')";
-					connect.ejecutarInsertDeleteUpdate(sentenciaTeclado);*/
 					
 					
 				} catch (SQLException e1) {

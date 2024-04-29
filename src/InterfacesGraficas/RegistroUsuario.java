@@ -250,7 +250,9 @@ public class RegistroUsuario extends JFrame {
 			                JOptionPane.showMessageDialog(contentPane, "El usuario con DNI '" + textoDNI + "' ya existe en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
 			            } else if (mensajeError.contains("duplicate entry")) {
 			                JOptionPane.showMessageDialog(contentPane, "El usuario con DNI '" + textoDNI + "' ya existe en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-			            } else {
+			            } else if (!textoPassword1.equals(textoPassword2)) {
+							JOptionPane.showMessageDialog(passwordField, "Las contraseñas no son iguales" + e1.getMessage());
+						} else {
 			                JOptionPane.showMessageDialog(contentPane, "Error intentado realizar el registro en la base de datos: " + mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
 			            }
 			        }

@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class crearCategoria extends JFrame {
+public class CrearCategoria extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -23,7 +23,7 @@ public class crearCategoria extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					crearCategoria frame = new crearCategoria();
+					CrearCategoria frame = new CrearCategoria();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class crearCategoria extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public crearCategoria() {
+	public CrearCategoria() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 100, 1280, 720);
 		contentPane = new JPanel();

@@ -185,7 +185,7 @@ public class Login extends JFrame {
 					if (resultSet.next()) {
 						Usuario.setNombreUsuario(resultSet.getString("nombreUsuario"));
 						Usuario.setPassUsuario(resultSet.getString("passUsuario"));
-						MAIN main = new MAIN();
+						Main main = new Main();
 						main.setVisible(true);
 						dispose();
 					} else {

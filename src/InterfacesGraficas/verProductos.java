@@ -10,6 +10,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.border.LineBorder;
 
 public class VerProductos extends JFrame {
 
@@ -39,9 +47,9 @@ public class VerProductos extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 100, 1280, 720);
 		contentPane = new JPanel();
-		contentPane.setForeground(Color.BLACK);
+		contentPane.setForeground(new Color(240, 230, 140));
 		contentPane.setBackground(new Color(240, 230, 140));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -60,6 +68,37 @@ public class VerProductos extends JFrame {
 		lblImagen.setIcon(img2);
 		contentPane.add(lblImagen);
 		contentPane.setLayout(null);
+		
+		JTree tree = new JTree();
+		tree.setBackground(new Color(240, 230, 140));
+		tree.setModel(new DefaultTreeModel(
+			new DefaultMutableTreeNode("Comidas") {
+				{
+					DefaultMutableTreeNode node_1;
+					node_1 = new DefaultMutableTreeNode("Carnes");
+						node_1.add(new DefaultMutableTreeNode("Secreto Iberico"));
+						node_1.add(new DefaultMutableTreeNode("Chuleton Rubia Gallega"));
+						node_1.add(new DefaultMutableTreeNode("Cordero al Horno"));
+						node_1.add(new DefaultMutableTreeNode("Solomillo al Roque"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Pescado");
+						node_1.add(new DefaultMutableTreeNode("Lubina al Horno"));
+						node_1.add(new DefaultMutableTreeNode("Dorada al Horno"));
+						node_1.add(new DefaultMutableTreeNode("Choco Frito"));
+						node_1.add(new DefaultMutableTreeNode("Frito Variado"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Mariscos");
+						node_1.add(new DefaultMutableTreeNode("Gambas"));
+						node_1.add(new DefaultMutableTreeNode("Mejillones"));
+						node_1.add(new DefaultMutableTreeNode("Langostinos"));
+						node_1.add(new DefaultMutableTreeNode("Centollos"));
+					add(node_1);
+				}
+			}
+		));
+		tree.setBounds(163, 240, 163, 177);
+		contentPane.add(tree);
+		
+		
 	}
-
 }

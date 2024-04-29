@@ -51,11 +51,6 @@ public class RegistroUsuario extends JFrame {
 	 ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
 
 	
-	// Método para obtener la conexión
-    public ConexionMySQL obtenerConexion() {
-        return obtenerConexion();
-        
-    }
     
     
 

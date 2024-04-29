@@ -13,6 +13,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.SystemColor;
+import javax.swing.BorderFactory;
+import javax.swing.border.EtchedBorder;
+
+import componentes.Usuario;
+
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class MAIN extends JFrame {
 
@@ -46,7 +54,7 @@ public class MAIN extends JFrame {
 		contentPane.setForeground(Color.BLACK);
 		contentPane.setBackground(new Color(240, 230, 140));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -61,21 +69,49 @@ public class MAIN extends JFrame {
 		IconoUsuario.setBounds(262, 68, 739, 545);
 		ImageIcon ico2 =new ImageIcon(getClass().getResource("/imagenes/logo2.png"));
 		ImageIcon img2 =new ImageIcon(ico2.getImage().getScaledInstance(IconoUsuario.getWidth(), IconoUsuario.getHeight(), Image.SCALE_SMOOTH));
+		
+		JLabel lblWelcomeToJowits = new JLabel("Welcome to jowIts, " + Usuario.getNombreUsuario() + ". " );
+		lblWelcomeToJowits.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWelcomeToJowits.setForeground(Color.WHITE);
+		lblWelcomeToJowits.setFont(new Font("Times New Roman", Font.PLAIN, 40));
+		lblWelcomeToJowits.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		lblWelcomeToJowits.setBackground(SystemColor.textHighlightText);
+		lblWelcomeToJowits.setBounds(10, 22, 1244, 94);
+		contentPane.add(lblWelcomeToJowits);
+		
+		JPanel panelTitulo = new JPanel();
+		panelTitulo.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		panelTitulo.setBackground(new Color(0, 0, 0, 90));
+		panelTitulo.setBounds(10, 22, 1244, 94);
+		contentPane.add(panelTitulo);
+		panelTitulo.setLayout(new BorderLayout());
 		IconoUsuario.setIcon(img2);
 		contentPane.add(IconoUsuario);
 		
 		//BOTÓN DE ATRÁS
-		JButton btnFlecha = new JButton("Atrás");
-		btnFlecha.addActionListener(new ActionListener() {
+		JButton btnAtras = new JButton("Atrás");
+		btnAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 MainFrame mainFrame = new MainFrame();
                 mainFrame.setVisible(true);
                 dispose();
             }
         });
-		getContentPane().add(btnFlecha, BorderLayout.CENTER);
-		btnFlecha.setBounds(52, 447, 174, 89);
-		contentPane.add(btnFlecha);
+		getContentPane().add(btnAtras, BorderLayout.CENTER);
+		btnAtras.setBounds(52, 447, 174, 89);
+		contentPane.add(btnAtras);
+		
+		JButton btnRegistrarProducto = new JButton("Registrar Nuevo Producto");
+		btnRegistrarProducto.setBounds(52, 260, 174, 89);
+		contentPane.add(btnRegistrarProducto);
+		
+		JButton btnRegistrarEmpleado = new JButton("Registrar Nuevo Empleado");
+		btnRegistrarEmpleado.setBounds(52, 127, 174, 89);
+		contentPane.add(btnRegistrarEmpleado);
+		
+		JButton btnRegistrarCategoria = new JButton("Registrar Nueva Categoría");
+		btnRegistrarCategoria.setBounds(984, 127, 174, 89);
+		contentPane.add(btnRegistrarCategoria);
 		
 		
 		

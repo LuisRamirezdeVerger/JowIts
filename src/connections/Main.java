@@ -16,20 +16,6 @@ public class Main {
 		try {
 			connectInv.conectar();
 			System.out.println("Conexión establecida. ");
-			
-			
-			// Ejemplo de sentencia pre-definida
-			/*String sentencia = "INSERT INTO Persona (Nombre, Edad) VALUES ('Wito', '32')";
-			connect.ejecutarInsertDeleteUpdate(sentencia);*/
-			// Ejemplo de sentencia definida por el usuario
-			/* System.out.println("Introduzca nombre: ");
-			String nombre = sc.next();
-			System.out.println("Introduzca edad: ");
-			int edad = sc.nextInt();
-			String sentenciaTeclado = "INSERT INTO Persona (Nombre, Edad) VALUES ('"+ nombre +"', '"+ edad +"')";
-			connect.ejecutarInsertDeleteUpdate(sentenciaTeclado);*/
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

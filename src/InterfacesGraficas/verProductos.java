@@ -51,7 +51,7 @@ public class verProductos extends JFrame {
 		});
 	}
 	
-	 ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+	
 
 	/**
 	 * Create the frame.
@@ -95,6 +95,8 @@ public class verProductos extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+				
                 JOptionPane.showMessageDialog(contentPane, "Estos son los pescados que tenemos: ");
                 
                 String Pescado;
@@ -132,6 +134,8 @@ public class verProductos extends JFrame {
 	    Button2.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 				
+	    		ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+	    		
                 JOptionPane.showMessageDialog(contentPane, "Estos son las carnes que tenemos: ");
                 
                 String Carne;
@@ -171,6 +175,8 @@ public class verProductos extends JFrame {
 	    Button3.setIcon(new ImageIcon(imagenEscalada));
 	    Button3.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
+	    		
+	    		ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
 				
                 
                 JOptionPane.showMessageDialog(contentPane, "Estos son las verduras que tenemos: ");
@@ -213,6 +219,9 @@ public class verProductos extends JFrame {
 		volverMain.setSize(168, 58);
 		volverMain.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	
+            	ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+            	
                 // Ocultar este frame
                 setVisible(false);
                 

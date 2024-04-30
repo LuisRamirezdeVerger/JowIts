@@ -71,14 +71,19 @@ public class RegistroNuevoProducto extends JFrame {
 		/*
 		 * LOGO
 		 */
-		
-		JLabel lblImagen = new JLabel("Logo");
-		lblImagen.setBounds(450, 11, 343, 263);
 		ImageIcon ico2 = new ImageIcon(getClass().getResource("/imagenes/logo2.png"));
-		ImageIcon img2 = new ImageIcon(ico2.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH));
-		lblImagen.setIcon(img2);
-		contentPane.add(lblImagen);
 		contentPane.setLayout(null);
+		
+		JButton btnAtras = new JButton("Atrás");
+		btnAtras.setBounds(43, 585, 206, 68);
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main main = new Main();
+				main.setVisible(true);
+				dispose();
+			}
+		});
+		contentPane.add(btnAtras);
 		
 		JLabel lblNewLabel = new JLabel("Nombre Producto");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -88,15 +93,23 @@ public class RegistroNuevoProducto extends JFrame {
 		
 		JLabel lblCantidadDelProducto = new JLabel("Cantidad del Producto a añadir");
 		lblCantidadDelProducto.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblCantidadDelProducto.setBounds(210, 508, 287, 49);
+		lblCantidadDelProducto.setBounds(210, 464, 287, 49);
 		contentPane.add(lblCantidadDelProducto);
 		contentPane.setLayout(null);
 		
+<<<<<<< HEAD
 		JSpinner ContadorCantidad = new JSpinner();
 		ContadorCantidad.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 		ContadorCantidad.setToolTipText("");
 		ContadorCantidad.setBounds(728, 526, 202, 31);
 		contentPane.add(ContadorCantidad);
+=======
+		JSpinner spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+		spinner.setToolTipText("");
+		spinner.setBounds(728, 477, 202, 31);
+		contentPane.add(spinner);
+>>>>>>> ab8528f792a949349ec69318f343a74bd891d104
 		contentPane.setLayout(null);
 		
 		textNombreProducto = new JTextField();
@@ -119,8 +132,14 @@ public class RegistroNuevoProducto extends JFrame {
 		 */
 		
 		JButton btnNewButton = new JButton("Introducir el producto");
-		btnNewButton.setBounds(913, 131, 247, 102);
+		btnNewButton.setBounds(915, 533, 247, 102);
 		contentPane.add(btnNewButton);
+		
+		JLabel lblImagen = new JLabel("Logo");
+		lblImagen.setBounds(344, 33, 573, 420);
+		ImageIcon img2 = new ImageIcon(ico2.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH));
+		lblImagen.setIcon(img2);
+		contentPane.add(lblImagen);
 		btnNewButton.addActionListener((ActionListener) new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

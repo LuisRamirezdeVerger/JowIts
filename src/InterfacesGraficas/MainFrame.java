@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -41,7 +42,7 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
 		setLocationRelativeTo(null);
-		
+		setUndecorated(true);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(131, 185, 245));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,6 +58,8 @@ public class MainFrame extends JFrame {
 				dispose();
 			}
 		});
+		btnLogin.setBounds(449, 464, 350, 116);
+		contentPane.add(btnLogin);
 		
 		JButton btnRegistraEmpresa = new JButton("Registrar empresa nueva");
 		btnRegistraEmpresa.setBounds(176, 270, 350, 116);
@@ -68,11 +71,7 @@ public class MainFrame extends JFrame {
 			}
 		});
 		contentPane.add(btnRegistraEmpresa);
-		
 
-		btnLogin.setBounds(449, 464, 350, 116);
-		contentPane.add(btnLogin);
-		
 		//Crear botón de ir atrás
 
 		JButton btnRegistrate = new JButton("Registrar usuario nuevo");
@@ -85,6 +84,18 @@ public class MainFrame extends JFrame {
 			}
 		});
 		contentPane.add(btnRegistrate);
+		
+		//Crear botón de ir salir
+
+				JButton btnSalir = new JButton("Salir");
+				btnSalir.setBounds(136, 594, 195, 48);
+				btnSalir.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						 JOptionPane.showMessageDialog(contentPane, "Gracias por usar 'JowIts'!");
+						dispose();
+					}
+				});
+				contentPane.add(btnSalir);
 		
 		JLabel lblImagen = new JLabel("Logo");
 		lblImagen.setBounds(288, 38, 688, 604);

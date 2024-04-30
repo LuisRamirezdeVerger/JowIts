@@ -3,15 +3,18 @@ package interfacesGraficas;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class crearCategoria extends JFrame {
+public class CrearCategoria extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -23,7 +26,7 @@ public class crearCategoria extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					crearCategoria frame = new crearCategoria();
+					CrearCategoria frame = new CrearCategoria();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +38,7 @@ public class crearCategoria extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public crearCategoria() {
+	public CrearCategoria() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 100, 1280, 720);
 		contentPane = new JPanel();
@@ -60,6 +63,19 @@ public class crearCategoria extends JFrame {
 		lblImagen.setIcon(img2);
 		contentPane.add(lblImagen);
 		contentPane.setLayout(null);
+		
+		//Crear botón de ir atrás
+
+				JButton btnAtras = new JButton("Atrás");
+				btnAtras.setBounds(63, 525, 206, 68);
+				btnAtras.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Main main = new Main();
+						main.setVisible(true);
+						dispose();
+					}
+				});
+				contentPane.add(btnAtras);
 	}
 
 }

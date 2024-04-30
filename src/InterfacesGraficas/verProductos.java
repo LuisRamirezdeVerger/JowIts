@@ -30,7 +30,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 
-public class verProductos extends JFrame {
+public class VerProductos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -42,7 +42,7 @@ public class verProductos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					verProductos frame = new verProductos();
+					VerProductos frame = new VerProductos();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +56,7 @@ public class verProductos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public verProductos() {
+	public VerProductos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 100, 1280, 720);
 		contentPane = new JPanel();

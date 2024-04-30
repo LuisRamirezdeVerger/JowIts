@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class nuevoProductoPrueba extends JFrame {
+public class NuevoProductoPrueba extends JFrame {
 
     private JPanel contentPane;
     private JTextField textField;
@@ -19,7 +19,7 @@ public class nuevoProductoPrueba extends JFrame {
     // Declara una instancia de la clase ConexionMySQL
     private ConexionMySQL conexion;
 
-    public nuevoProductoPrueba() {
+    public NuevoProductoPrueba() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(200, 100, 1280, 720);
         contentPane = new JPanel();

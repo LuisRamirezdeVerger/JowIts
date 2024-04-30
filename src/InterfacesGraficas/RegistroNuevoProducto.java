@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
@@ -16,6 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import connections.ConexionMySQL;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -62,6 +66,9 @@ public class RegistroNuevoProducto extends JFrame {
 		
 		JEditorPane editorPane = new JEditorPane();
 		contentPane.add(editorPane);
+		
+		ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+
 		
 		/*
 		 * LOGO
@@ -123,8 +130,21 @@ public class RegistroNuevoProducto extends JFrame {
 				String textAnadirProducto = textField.getText();
 				int value = (int) spinner.getValue(); // Convertir a Integer si es necesario
                 JOptionPane.showMessageDialog(contentPane, "Vas a añadir el producto= "+ textAnadirProducto+"\nLa cantidad es= " + value);
+                try {
+					conexion.conectar();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
                 
+                String consulta = "INSERT INTO Producto (nombreProducto, cantidadProducto) VALUES ('" + textAnadirProducto+ "', '" + value + "')";
                 
+                try {
+					conexion.ejecutarInsertDeleteUpdate(consulta);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
                 
                 
                 
@@ -133,6 +153,11 @@ public class RegistroNuevoProducto extends JFrame {
 			}
             
         });
+		
+		
+		/*
+		 * Volver al MAIN
+		 */
 		
 		
 		JButton volverMain = new JButton("Volver");

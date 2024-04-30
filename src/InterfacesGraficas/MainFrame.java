@@ -49,7 +49,7 @@ public class MainFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JButton btnLogin = new JButton("Log in");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -60,7 +60,7 @@ public class MainFrame extends JFrame {
 		});
 		btnLogin.setBounds(449, 464, 350, 116);
 		contentPane.add(btnLogin);
-		
+
 		JButton btnRegistraEmpresa = new JButton("Registrar empresa nueva");
 		btnRegistraEmpresa.setBounds(176, 270, 350, 116);
 		btnRegistraEmpresa.addActionListener(new ActionListener() {
@@ -72,8 +72,6 @@ public class MainFrame extends JFrame {
 		});
 		contentPane.add(btnRegistraEmpresa);
 
-		//Crear botón de ir atrás
-
 		JButton btnRegistrate = new JButton("Registrar usuario nuevo");
 		btnRegistrate.setBounds(732, 270, 350, 116);
 		btnRegistrate.addActionListener(new ActionListener() {
@@ -84,23 +82,24 @@ public class MainFrame extends JFrame {
 			}
 		});
 		contentPane.add(btnRegistrate);
-		
-		//Crear botón de ir salir
 
-				JButton btnSalir = new JButton("Salir");
-				btnSalir.setBounds(136, 594, 195, 48);
-				btnSalir.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						 JOptionPane.showMessageDialog(contentPane, "Gracias por usar 'JowIts'!");
-						dispose();
-					}
-				});
-				contentPane.add(btnSalir);
-		
+		// Crear botón de ir salir
+
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.setBounds(136, 594, 195, 48);
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(contentPane, "Gracias por usar 'JowIts'!");
+				dispose();
+			}
+		});
+		contentPane.add(btnSalir);
+
 		JLabel lblImagen = new JLabel("Logo");
 		lblImagen.setBounds(288, 38, 688, 604);
 		ImageIcon ico2 = new ImageIcon(getClass().getResource("/imagenes/logo2.png"));
-		ImageIcon img2 = new ImageIcon(ico2.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH));
+		ImageIcon img2 = new ImageIcon(
+				ico2.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH));
 		lblImagen.setIcon(img2);
 		contentPane.add(lblImagen);
 	}

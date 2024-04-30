@@ -1,5 +1,6 @@
 package interfacesGraficas;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -158,7 +159,23 @@ public class RegistroNuevoEmpleado extends JFrame {
 	        });
 	    
 		
-		
+	        JButton volverMain = new JButton("Volver");
+			volverMain.setLocation(967, 42);
+			volverMain.setSize(168, 58);
+			volverMain.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                // Ocultar este frame
+	                setVisible(false);
+	                
+	                // Mostrar el siguiente frame
+	                MAIN frame2 = new MAIN();
+	                frame2.setVisible(true);
+	            }
+	        });
+	        
+	        getContentPane().add(volverMain, BorderLayout.CENTER);
+	        
+	        setVisible(true);
 		
 		
 		

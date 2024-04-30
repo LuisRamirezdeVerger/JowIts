@@ -97,19 +97,11 @@ public class RegistroNuevoProducto extends JFrame {
 		contentPane.add(lblCantidadDelProducto);
 		contentPane.setLayout(null);
 		
-<<<<<<< HEAD
 		JSpinner ContadorCantidad = new JSpinner();
 		ContadorCantidad.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 		ContadorCantidad.setToolTipText("");
 		ContadorCantidad.setBounds(728, 526, 202, 31);
 		contentPane.add(ContadorCantidad);
-=======
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-		spinner.setToolTipText("");
-		spinner.setBounds(728, 477, 202, 31);
-		contentPane.add(spinner);
->>>>>>> ab8528f792a949349ec69318f343a74bd891d104
 		contentPane.setLayout(null);
 		
 		textNombreProducto = new JTextField();
@@ -144,7 +136,7 @@ public class RegistroNuevoProducto extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-<<<<<<< HEAD
+
 				String textAnadirProducto = textField.getText();
 				int value = (int) spinner.getValue(); // Convertir a Integer si es necesario
                 JOptionPane.showMessageDialog(contentPane, "Vas a añadir el producto= "+ textAnadirProducto+"\nLa cantidad es= " + value);   
@@ -152,7 +144,7 @@ public class RegistroNuevoProducto extends JFrame {
             
         });
 
-=======
+
 				
 				String textAnadirProducto = textNombreProducto.getText();
 				int value = (int) ContadorCantidad.getValue(); // Convertir a Integer si es necesario
@@ -182,7 +174,7 @@ public class RegistroNuevoProducto extends JFrame {
 				} 
                 
              
-			}
+			
             
         });
 		
@@ -204,7 +196,7 @@ public class RegistroNuevoProducto extends JFrame {
                 setVisible(false);
                 
                 // Mostrar el siguiente frame
-                MAIN frame2 = new MAIN();
+                Main frame2 = new Main();
                 frame2.setVisible(true);
                 
                 try {
@@ -222,17 +214,6 @@ public class RegistroNuevoProducto extends JFrame {
         getContentPane().add(volverMain, BorderLayout.CENTER);
         
         setVisible(true);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
->>>>>>> 40f7621e9f7c8c33a1c32c298483358bdb242c6b
+
 	}
 }

@@ -50,8 +50,6 @@ public class VerProductos extends JFrame {
 			}
 		});
 	}
-	
-	
 
 	/**
 	 * Create the frame.
@@ -117,8 +115,10 @@ public class VerProductos extends JFrame {
 				}
                 
 			}
+		}
 		));
 		tree.setBounds(163, 240, 163, 177);
 		contentPane.add(tree);
-	}
+	
 
+}

@@ -57,75 +57,74 @@ public class CrearCategoria extends JFrame {
 		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JEditorPane editorPane = new JEditorPane();
 		contentPane.add(editorPane);
-		
+
 		/*
 		 * LOGO
 		 */
-		
+
 		JLabel lblImagen = new JLabel("Logo");
 		lblImagen.setBounds(450, 11, 343, 263);
 		ImageIcon ico2 = new ImageIcon(getClass().getResource("/imagenes/logo2.png"));
-		ImageIcon img2 = new ImageIcon(ico2.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH));
+		ImageIcon img2 = new ImageIcon(
+				ico2.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH));
 		lblImagen.setIcon(img2);
 		contentPane.add(lblImagen);
 		contentPane.setLayout(null);
-		
-		//Crear botón de ir atrás
 
-				JButton btnAtras = new JButton("Atrás");
-				btnAtras.setBounds(63, 525, 206, 68);
-				btnAtras.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						Main main = new Main();
-						main.setVisible(true);
-						dispose();
-					}
-				});
-				contentPane.add(btnAtras);
-				
-				textCategoria = new JTextField();
-				textCategoria.setBounds(529, 400, 206, 55);
-				contentPane.add(textCategoria);
-				textCategoria.setColumns(10);
-				
-				JButton btnCreaCategoria = new JButton("Crear Categoría para empleado");
-				btnCreaCategoria.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-							
-						btnCreaCategoria.setBackground(Color.red);
-								String textoCategoria = textCategoria.getText();
-							
-								
-								ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
-								try {
-									connectInv.conectar();
-									System.out.println("Conectado a la BBDD");
-									String consulta = "INSERT INTO Categoria (nombreCategoria) VALUES ('" + textoCategoria + "')";
-									int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
+		// Crear botón de ir atrás
 
-						                JOptionPane.showMessageDialog(btnCreaCategoria, "Categoría registrada con éxito. ");
-						            
-									System.out.println("Fila insertada!");
-									connectInv.desconectar();
-									System.out.println("desConectado de la BBDD");
-								} catch (SQLException e1) {
-									e1.printStackTrace();
-								}
-							}
+		JButton btnAtras = new JButton("Atrás");
+		btnAtras.setBounds(63, 525, 206, 68);
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main main = new Main();
+				main.setVisible(true);
+				dispose();
+			}
+		});
+		contentPane.add(btnAtras);
 
-						});
-				
-				btnCreaCategoria.setBounds(529, 493, 206, 68);
-				contentPane.add(btnCreaCategoria);
-				
-				JLabel lblNewLabel = new JLabel("Escriba la categoría de empleado a crear");
-				lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-				lblNewLabel.setBounds(446, 341, 372, 48);
-				contentPane.add(lblNewLabel);
+		textCategoria = new JTextField();
+		textCategoria.setBounds(529, 400, 206, 55);
+		contentPane.add(textCategoria);
+		textCategoria.setColumns(10);
+
+		JButton btnCreaCategoria = new JButton("Crear Categoría para empleado");
+		btnCreaCategoria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				btnCreaCategoria.setBackground(Color.red);
+				String textoCategoria = textCategoria.getText();
+
+				ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+				try {
+					connectInv.conectar();
+					System.out.println("Conectado a la BBDD");
+					String consulta = "INSERT INTO Categoria (nombreCategoria) VALUES ('" + textoCategoria + "')";
+					int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
+
+					JOptionPane.showMessageDialog(btnCreaCategoria, "Categoría registrada con éxito. ");
+
+					System.out.println("Fila insertada!");
+					connectInv.desconectar();
+					System.out.println("desConectado de la BBDD");
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+		});
+
+		btnCreaCategoria.setBounds(529, 493, 206, 68);
+		contentPane.add(btnCreaCategoria);
+
+		JLabel lblNewLabel = new JLabel("Escriba la categoría de empleado a crear");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(446, 341, 372, 48);
+		contentPane.add(lblNewLabel);
 	}
 }

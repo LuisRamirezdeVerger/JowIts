@@ -1,10 +1,16 @@
 package interfacesGraficas;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,11 +19,16 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
+
+import connections.ConexionMySQL;
+
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.border.LineBorder;
+import javax.swing.SwingConstants;
 
 public class VerProductos extends JFrame {
 
@@ -39,6 +50,8 @@ public class VerProductos extends JFrame {
 			}
 		});
 	}
+	
+	
 
 	/**
 	 * Create the frame.
@@ -69,34 +82,186 @@ public class VerProductos extends JFrame {
 		contentPane.add(lblImagen);
 		contentPane.setLayout(null);
 		
-		JTree tree = new JTree();
-		tree.setBackground(new Color(240, 230, 140));
-		tree.setModel(new DefaultTreeModel(
-			new DefaultMutableTreeNode("Comidas") {
-				{
-					DefaultMutableTreeNode node_1;
-					node_1 = new DefaultMutableTreeNode("Carnes");
-						node_1.add(new DefaultMutableTreeNode("Secreto Iberico"));
-						node_1.add(new DefaultMutableTreeNode("Chuleton Rubia Gallega"));
-						node_1.add(new DefaultMutableTreeNode("Cordero al Horno"));
-						node_1.add(new DefaultMutableTreeNode("Solomillo al Roque"));
-					add(node_1);
-					node_1 = new DefaultMutableTreeNode("Pescado");
-						node_1.add(new DefaultMutableTreeNode("Lubina al Horno"));
-						node_1.add(new DefaultMutableTreeNode("Dorada al Horno"));
-						node_1.add(new DefaultMutableTreeNode("Choco Frito"));
-						node_1.add(new DefaultMutableTreeNode("Frito Variado"));
-					add(node_1);
-					node_1 = new DefaultMutableTreeNode("Mariscos");
-						node_1.add(new DefaultMutableTreeNode("Gambas"));
-						node_1.add(new DefaultMutableTreeNode("Mejillones"));
-						node_1.add(new DefaultMutableTreeNode("Langostinos"));
-						node_1.add(new DefaultMutableTreeNode("Centollos"));
-					add(node_1);
+		
+		/*
+		 * PESCADO
+		 */
+		
+		JButton btnNewButton = new JButton("Pescado");
+		btnNewButton.setVerticalAlignment(SwingConstants.BOTTOM);
+		ImageIcon icono = new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\pescado.jpg");
+	    Image imagenEscalada = icono.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH);
+	    btnNewButton.setIcon(new ImageIcon(imagenEscalada));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+				
+                JOptionPane.showMessageDialog(contentPane, "Estos son los pescados que tenemos: ");
+                
+                String Pescado;
+                Pescado ="SELECT * FROM productos WHERE nombre_producto LIKE 'P%';";
+                
+                try {
+					conexion.ejecutarSelect(getName());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} finally {
+					try {
+						conexion.desconectar();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
+                
 			}
+<<<<<<< HEAD
 		));
 		tree.setBounds(163, 240, 163, 177);
 		contentPane.add(tree);
+=======
+		});
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\pescado.jpg"));
+		btnNewButton.setSelectedIcon(new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\pescado.jpg"));
+		btnNewButton.setBounds(78, 339, 236, 124);
+		contentPane.add(btnNewButton);
+		
+		/*
+		 * CARNES
+		 */
+		
+		JButton Button2 = new JButton("Carnes");
+		ImageIcon icono2 = new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\carnes2.jpg");
+	    Image imagenEscalada2 = icono.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH);
+	    Button2.setIcon(new ImageIcon(imagenEscalada));
+	    Button2.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+				
+	    		ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+	    		
+                JOptionPane.showMessageDialog(contentPane, "Estos son las carnes que tenemos: ");
+                
+                String Carne;
+                Carne ="SELECT * FROM productos WHERE nombre_producto LIKE 'C%';";
+                
+                try {
+					conexion.ejecutarSelect(getName());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} finally {
+					try {
+						conexion.desconectar();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+                
+			}
+		});
+		Button2.setIcon(new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\carnes2.jpg"));
+		Button2.setSelectedIcon(new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\carnes2.jpg"));
+		Button2.setBounds(519, 339, 236, 124);
+		contentPane.add(Button2);
+        
+        
+		/*
+		 * VERDURAS
+		 */
+        
+		
+		JButton Button3 = new JButton("Verduras");
+		Button3.setVerticalAlignment(SwingConstants.BOTTOM);
+		ImageIcon icono3 = new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\verduras.jpeg");
+	    Image imagenEscalada3 = icono.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH);
+	    Button3.setIcon(new ImageIcon(imagenEscalada));
+	    Button3.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		
+	    		ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+				
+                
+                JOptionPane.showMessageDialog(contentPane, "Estos son las verduras que tenemos: ");
+                
+                String Verdura;
+                Verdura ="SELECT * FROM productos WHERE nombre_producto LIKE 'V%';";
+                
+                try {
+					conexion.ejecutarSelect(getName());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} finally {
+					try {
+						conexion.desconectar();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+               
+                
+                
+			}
+		});
+	    Button3.setIcon(new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\verduras.jpeg"));
+	    Button3.setSelectedIcon(new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\verduras.jpeg"));
+	    Button3.setBounds(959, 339, 236, 124);
+		contentPane.add(Button3);
+		
+		
+		
+		/*
+		 * Boton para volver
+		 */
+		
+		
+		JButton volverMain = new JButton("Volver");
+		volverMain.setLocation(967, 42);
+		volverMain.setSize(168, 58);
+		volverMain.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	
+            	ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+            	
+                // Ocultar este frame
+                setVisible(false);
+                
+                // Mostrar el siguiente frame
+                MAIN frame2 = new MAIN();
+                frame2.setVisible(true);
+                
+                try {
+					conexion.desconectar();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            }
+        });
+        
+        getContentPane().add(volverMain, BorderLayout.CENTER);
+        
+        setVisible(true);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    	}
+>>>>>>> 40f7621e9f7c8c33a1c32c298483358bdb242c6b
 	}
-}
+

@@ -22,7 +22,7 @@ import componentes.Usuario;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-public class MAIN extends JFrame {
+public class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -34,7 +34,7 @@ public class MAIN extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MAIN frame = new MAIN();
+					Main frame = new Main();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +46,7 @@ public class MAIN extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MAIN() {
+	public Main() {
 		setBackground(Color.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -102,6 +102,13 @@ public class MAIN extends JFrame {
 		contentPane.add(btnAtras);
 		
 		JButton btnRegistrarProducto = new JButton("Registrar Nuevo Producto");
+		btnRegistrarProducto.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                RegistroNuevoProducto nuevoProducto = new RegistroNuevoProducto();
+                nuevoProducto.setVisible(true);
+                dispose();
+            }
+        });
 		btnRegistrarProducto.setBounds(52, 260, 174, 89);
 		contentPane.add(btnRegistrarProducto);
 		
@@ -110,18 +117,17 @@ public class MAIN extends JFrame {
 		contentPane.add(btnRegistrarEmpleado);
 		
 		JButton btnRegistrarCategoria = new JButton("Registrar Nueva Categoría");
+		btnRegistrarCategoria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                CrearCategoria crearCategoria = new CrearCategoria();
+                crearCategoria.setVisible(true);
+                dispose();
+            }
+        });
 		btnRegistrarCategoria.setBounds(984, 127, 174, 89);
 		contentPane.add(btnRegistrarCategoria);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 	}
 }

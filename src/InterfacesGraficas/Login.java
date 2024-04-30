@@ -185,14 +185,13 @@ public class Login extends JFrame {
 					if (resultSet.next()) {
 						Usuario.setNombreUsuario(resultSet.getString("nombreUsuario"));
 						Usuario.setPassUsuario(resultSet.getString("passUsuario"));
-						MAIN main = new MAIN();
+						Main main = new Main();
 						main.setVisible(true);
 						dispose();
 					} else {
 						// Si el usuario o contraseña no se encuentra
 						JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrecto. ");
 					}
-
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos: " + e1.getMessage());
@@ -215,17 +214,17 @@ public class Login extends JFrame {
 		contentPane.add(btnConectar);
 
 		// Botón de atrás
-		JButton btnFlecha = new JButton();
-		btnFlecha.addActionListener(new ActionListener() {
+		JButton btnAtras = new JButton("Atrás");
+		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame mainFrame = new MainFrame();
 				mainFrame.setVisible(true);
 				dispose();
 			}
 		});
-		getContentPane().add(btnFlecha, BorderLayout.CENTER);
-		btnFlecha.setBounds(52, 447, 174, 89);
-		contentPane.add(btnFlecha);
+		getContentPane().add(btnAtras, BorderLayout.CENTER);
+		btnAtras.setBounds(52, 447, 174, 89);
+		contentPane.add(btnAtras);
 
 
 	}

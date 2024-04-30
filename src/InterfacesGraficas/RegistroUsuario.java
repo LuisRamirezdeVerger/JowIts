@@ -171,7 +171,7 @@ public class RegistroUsuario extends JFrame {
 		contentPane.add(lblConfCon);
 		
 		//BOTÓN DE ATRÁS
-				JButton btnFlecha = new JButton();
+				JButton btnFlecha = new JButton("Atrás");
 				btnFlecha.addActionListener(new ActionListener() {
 		            public void actionPerformed(ActionEvent e) {
 		                MainFrame mainFrame = new MainFrame();

@@ -5,19 +5,28 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import connections.ConexionMySQL;
+
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class CrearCategoria extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField textCategoria;
 
 	/**
 	 * Launch the application.
@@ -76,6 +85,47 @@ public class CrearCategoria extends JFrame {
 					}
 				});
 				contentPane.add(btnAtras);
-	}
+				
+				textCategoria = new JTextField();
+				textCategoria.setBounds(529, 400, 206, 55);
+				contentPane.add(textCategoria);
+				textCategoria.setColumns(10);
+				
+				JButton btnCreaCategoria = new JButton("Crear Categoría para empleado");
+				btnCreaCategoria.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+							
+						btnCreaCategoria.setBackground(Color.red);
+								String textoCategoria = textCategoria.getText();
+							
+								
+								ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+								try {
+									connectInv.conectar();
+									System.out.println("Conectado a la BBDD");
+									String consulta = "INSERT INTO Categoria (nombreCategoria) VALUES ('" + textoCategoria + "')";
+									int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
 
+						                JOptionPane.showMessageDialog(btnCreaCategoria, "Categoría registrada con éxito. ");
+						            
+									System.out.println("Fila insertada!");
+									connectInv.desconectar();
+									System.out.println("desConectado de la BBDD");
+								} catch (SQLException e1) {
+									e1.printStackTrace();
+								}
+							}
+
+						});
+				
+				btnCreaCategoria.setBounds(529, 493, 206, 68);
+				contentPane.add(btnCreaCategoria);
+				
+				JLabel lblNewLabel = new JLabel("Escriba la categoría de empleado a crear");
+				lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNewLabel.setBounds(446, 341, 372, 48);
+				contentPane.add(lblNewLabel);
+	}
 }

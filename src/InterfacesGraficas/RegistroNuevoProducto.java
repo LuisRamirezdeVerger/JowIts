@@ -132,27 +132,10 @@ public class RegistroNuevoProducto extends JFrame {
 				// TODO Auto-generated method stub
 				String textAnadirProducto = textField.getText();
 				int value = (int) spinner.getValue(); // Convertir a Integer si es necesario
-                JOptionPane.showMessageDialog(contentPane, "Vas a añadir el producto= "+ textAnadirProducto+"\nLa cantidad es= " + value);
-                
-                
-                
-                
-                
-                
-                
+                JOptionPane.showMessageDialog(contentPane, "Vas a añadir el producto= "+ textAnadirProducto+"\nLa cantidad es= " + value);   
 			}
             
         });
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
 }

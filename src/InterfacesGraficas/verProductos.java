@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -94,6 +96,24 @@ public class verProductos extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
                 JOptionPane.showMessageDialog(contentPane, "Estos son los pescados que tenemos: ");
+                
+                String Pescado;
+                Pescado ="SELECT * FROM productos WHERE nombre_producto LIKE 'P%';";
+                
+                try {
+					conexion.ejecutarSelect(getName());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} finally {
+					try {
+						conexion.desconectar();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+                
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\pescado.jpg"));
@@ -102,7 +122,7 @@ public class verProductos extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		/*
-		 * Carnes
+		 * CARNES
 		 */
 		
 		JButton Button2 = new JButton("Carnes");
@@ -110,9 +130,27 @@ public class verProductos extends JFrame {
 	    Image imagenEscalada2 = icono.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH);
 	    Button2.setIcon(new ImageIcon(imagenEscalada));
 	    Button2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+	    	public void actionPerformed(ActionEvent e) {
 				
                 JOptionPane.showMessageDialog(contentPane, "Estos son las carnes que tenemos: ");
+                
+                String Carne;
+                Carne ="SELECT * FROM productos WHERE nombre_producto LIKE 'C%';";
+                
+                try {
+					conexion.ejecutarSelect(getName());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} finally {
+					try {
+						conexion.desconectar();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+                
 			}
 		});
 		Button2.setIcon(new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\carnes2.jpg"));
@@ -122,7 +160,7 @@ public class verProductos extends JFrame {
         
         
 		/*
-		 * Verduras
+		 * VERDURAS
 		 */
         
 		
@@ -132,9 +170,30 @@ public class verProductos extends JFrame {
 	    Image imagenEscalada3 = icono.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH);
 	    Button3.setIcon(new ImageIcon(imagenEscalada));
 	    Button3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+	    	public void actionPerformed(ActionEvent e) {
 				
+                
                 JOptionPane.showMessageDialog(contentPane, "Estos son las verduras que tenemos: ");
+                
+                String Verdura;
+                Verdura ="SELECT * FROM productos WHERE nombre_producto LIKE 'V%';";
+                
+                try {
+					conexion.ejecutarSelect(getName());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} finally {
+					try {
+						conexion.desconectar();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+               
+                
+                
 			}
 		});
 	    Button3.setIcon(new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\verduras.jpeg"));
@@ -160,6 +219,13 @@ public class verProductos extends JFrame {
                 // Mostrar el siguiente frame
                 MAIN frame2 = new MAIN();
                 frame2.setVisible(true);
+                
+                try {
+					conexion.desconectar();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             }
         });
         

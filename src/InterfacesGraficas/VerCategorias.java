@@ -91,7 +91,7 @@ public class VerCategorias extends JFrame {
                                 JScrollPane scrollPane1 = new JScrollPane(listCategorias);
                                 contentPane.add(scrollPane1, BorderLayout.CENTER);
                         
-                                // Crear el área de texto para mostrar las categorías
+                                // Área de texto para mostrar las categorías
                                 textAreaCategorias = new JTextArea();
                                 textAreaCategorias.setRows(3);
                                 textAreaCategorias.setEditable(false);
@@ -125,20 +125,18 @@ public class VerCategorias extends JFrame {
         DefaultListModel<String> listModel = new DefaultListModel<>();
     }
 
-    // Método para mostras las categorías
+    // Método para mostrar las categorías
     private void mostrarCategorias() {
         ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
 
         try {
             conexion.conectar();
-            // Consulta para obtener las categorías desde la base de datos
+            // Consulta 
             String consulta = "SELECT nombreCategoria FROM Categoria";
             ResultSet rs = conexion.ejecutarSelect(consulta);
-
-            // Limpiar el área de texto antes de mostrar las nuevas categorías
+            // Limpia el área de texto antes de mostrar las nuevas categorías
             textAreaCategorias.setText("");
-
-            // Agregar las categorías al área de texto
+            // Agregamos las categorías al área de texto
             while (rs.next()) {
                 textAreaCategorias.append(rs.getString("nombreCategoria") + "\n");
             }

@@ -60,15 +60,28 @@ public class Main extends JFrame {
 		
 		
 		
+		
 		/*
 		 * Icono
 		 */
 		
-		JLabel IconoUsuario = new JLabel("IconoUsuario");
+		JLabel fondoLogo = new JLabel("IconoUsuario");
+		fondoLogo.setToolTipText("Logo JowIts");
 		
-		IconoUsuario.setBounds(262, 68, 739, 545);
+		fondoLogo.setBounds(262, 68, 739, 545);
 		ImageIcon ico2 =new ImageIcon(getClass().getResource("/imagenes/logo2.png"));
-		ImageIcon img2 =new ImageIcon(ico2.getImage().getScaledInstance(IconoUsuario.getWidth(), IconoUsuario.getHeight(), Image.SCALE_SMOOTH));
+		ImageIcon img2 =new ImageIcon(ico2.getImage().getScaledInstance(fondoLogo.getWidth(), fondoLogo.getHeight(), Image.SCALE_SMOOTH));
+		
+		JButton btnRegistrarProducto = new JButton("Registrar Nuevo Producto");
+		btnRegistrarProducto.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                RegistroNuevoProducto nuevoProducto = new RegistroNuevoProducto();
+                nuevoProducto.setVisible(true);
+                dispose();
+            } 
+        });
+		btnRegistrarProducto.setBounds(52, 260, 228, 89);
+		contentPane.add(btnRegistrarProducto);
 		
 		JLabel lblWelcomeToJowits = new JLabel("Welcome to jowIts, " + Usuario.getNombreUsuario() + ". " );
 		lblWelcomeToJowits.setHorizontalAlignment(SwingConstants.CENTER);
@@ -85,35 +98,31 @@ public class Main extends JFrame {
 		panelTitulo.setBounds(10, 22, 1244, 94);
 		contentPane.add(panelTitulo);
 		panelTitulo.setLayout(new BorderLayout());
-		IconoUsuario.setIcon(img2);
-		contentPane.add(IconoUsuario);
+		fondoLogo.setIcon(img2);
+		contentPane.add(fondoLogo);
 		
 		//BOTÓN DE ATRÁS
-		JButton btnAtras = new JButton("Atrás");
-		btnAtras.addActionListener(new ActionListener() {
+		JButton btnCerrarSesion = new JButton("Cerrar sesión");
+		btnCerrarSesion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 MainFrame mainFrame = new MainFrame();
                 mainFrame.setVisible(true);
                 dispose();
             }
         });
-		getContentPane().add(btnAtras, BorderLayout.CENTER);
-		btnAtras.setBounds(52, 447, 174, 89);
-		contentPane.add(btnAtras);
+		getContentPane().add(btnCerrarSesion, BorderLayout.CENTER);
+		btnCerrarSesion.setBounds(88, 533, 228, 89);
+		contentPane.add(btnCerrarSesion);
 		
-		JButton btnRegistrarProducto = new JButton("Registrar Nuevo Producto");
-		btnRegistrarProducto.addActionListener(new ActionListener() {
+		JButton btnRegistrarEmpleado = new JButton("Registrar Nuevo Empleado");
+		btnRegistrarEmpleado.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                RegistroNuevoProducto nuevoProducto = new RegistroNuevoProducto();
-                nuevoProducto.setVisible(true);
+                RegistroNuevoEmpleado registroEmpleado = new RegistroNuevoEmpleado();
+                registroEmpleado.setVisible(true);
                 dispose();
             }
         });
-		btnRegistrarProducto.setBounds(52, 260, 174, 89);
-		contentPane.add(btnRegistrarProducto);
-		
-		JButton btnRegistrarEmpleado = new JButton("Registrar Nuevo Empleado");
-		btnRegistrarEmpleado.setBounds(52, 127, 174, 89);
+		btnRegistrarEmpleado.setBounds(52, 127, 228, 89);
 		contentPane.add(btnRegistrarEmpleado);
 		
 		JButton btnRegistrarCategoria = new JButton("Registrar Nueva Categoría");
@@ -126,6 +135,15 @@ public class Main extends JFrame {
         });
 		btnRegistrarCategoria.setBounds(984, 127, 174, 89);
 		contentPane.add(btnRegistrarCategoria);
+		
+		JButton btnSalir = new JButton("Salir de la aplicación");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnSalir.setBounds(966, 584, 192, 52);
+		contentPane.add(btnSalir);
 		
 
 		

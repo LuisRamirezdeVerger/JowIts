@@ -168,7 +168,7 @@ public class RegistroNuevoEmpleado extends JFrame {
 	                setVisible(false);
 	                
 	                // Mostrar el siguiente frame
-	                MAIN frame2 = new MAIN();
+	                Main frame2 = new Main();
 	                frame2.setVisible(true);
 	            }
 	        });

@@ -1,30 +1,37 @@
 package interfacesGraficas;
 
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.Font;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.sql.SQLException;
-
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeModel;
 
 import connections.ConexionMySQL;
 
-import java.awt.Font;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.SpinnerNumberModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.border.LineBorder;
+import javax.swing.SwingConstants;
 
 public class RegistroNuevoProducto extends JFrame {
 
@@ -96,20 +103,13 @@ public class RegistroNuevoProducto extends JFrame {
 		lblCantidadDelProducto.setBounds(210, 464, 287, 49);
 		contentPane.add(lblCantidadDelProducto);
 		contentPane.setLayout(null);
-		
-<<<<<<< HEAD
+
 		JSpinner ContadorCantidad = new JSpinner();
 		ContadorCantidad.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 		ContadorCantidad.setToolTipText("");
-		ContadorCantidad.setBounds(728, 526, 202, 31);
+		ContadorCantidad.setBounds(728, 477, 202, 31);
 		contentPane.add(ContadorCantidad);
-=======
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-		spinner.setToolTipText("");
-		spinner.setBounds(728, 477, 202, 31);
-		contentPane.add(spinner);
->>>>>>> ab8528f792a949349ec69318f343a74bd891d104
+
 		contentPane.setLayout(null);
 		
 		textNombreProducto = new JTextField();
@@ -195,7 +195,7 @@ public class RegistroNuevoProducto extends JFrame {
                 setVisible(false);
                 
                 // Mostrar el siguiente frame
-                MAIN frame2 = new MAIN();
+                Main frame2 = new Main();
                 frame2.setVisible(true);
                 
                 try {

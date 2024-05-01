@@ -187,7 +187,7 @@ public class RegistroNuevoProducto extends JFrame {
 		JButton volverMain = new JButton("Volver");
 		volverMain.setLocation(967, 42);
 		volverMain.setSize(168, 58);
-		volverMain.addActionListener(new ActionListener() {
+		volverMain.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
             	
             	ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");

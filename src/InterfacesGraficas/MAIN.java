@@ -23,7 +23,7 @@ import componentes.Usuario;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-public class MAIN extends JFrame {
+public class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -35,7 +35,7 @@ public class MAIN extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MAIN frame = new MAIN();
+					Main frame = new Main();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +47,7 @@ public class MAIN extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MAIN() {
+	public Main() {
 		setBackground(Color.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);

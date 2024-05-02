@@ -188,7 +188,7 @@ public class Login extends JFrame {
 						dispose();
 					} else {
 						// Si el usuario o contraseña no se encuentra
-						JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrecto. ");
+						JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrecto. ", "Credenciales incorrectas. ", JOptionPane.INFORMATION_MESSAGE);
 					}
 				} catch (SQLException e1) {
 					e1.printStackTrace();

@@ -90,7 +90,7 @@ public class RegistroNuevoProducto extends JFrame {
 		btnAtras.setBounds(43, 585, 206, 68);
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MAIN main = new MAIN();
+				Main main = new Main();
 				main.setVisible(true);
 				dispose();
 			}
@@ -154,7 +154,7 @@ public class RegistroNuevoProducto extends JFrame {
                 dispose();
                 
                 // Mostrar el siguiente frame
-                MAIN frame2 = new MAIN();
+                Main frame2 = new Main();
                 frame2.setVisible(true);
                 
                 try {

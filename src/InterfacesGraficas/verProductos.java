@@ -229,7 +229,7 @@ public class VerProductos extends JFrame {
             	ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
             	
                 // Ocultar este frame
-                setVisible(false);
+                dispose();
                 
                 // Mostrar el siguiente frame
                 Main frame2 = new Main();
@@ -262,10 +262,5 @@ public class VerProductos extends JFrame {
         
         
         
-    	}
-
-		}
-		);
-
-	}
+   	};
 }

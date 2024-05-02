@@ -151,7 +151,7 @@ public class RegistroNuevoProducto extends JFrame {
             	ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
             	
                 // Ocultar este frame
-                setVisible(false);
+                dispose();
                 
                 // Mostrar el siguiente frame
                 Main frame2 = new Main();
@@ -181,10 +181,10 @@ public class RegistroNuevoProducto extends JFrame {
         contentPane.add(rdbtnPescado);
         buttonGroup.add(rdbtnPescado);
         
-        JRadioButton rdbtnVardura = new JRadioButton("Verdura");
-        rdbtnVardura.setBounds(1077, 457, 109, 23);
-        contentPane.add(rdbtnVardura);
-        buttonGroup.add(rdbtnVardura);
+        JRadioButton rdbtnVerdura = new JRadioButton("Verdura");
+        rdbtnVerdura.setBounds(1077, 457, 109, 23);
+        contentPane.add(rdbtnVerdura);
+        buttonGroup.add(rdbtnVerdura);
         
         setVisible(true);
 		
@@ -201,116 +201,49 @@ public class RegistroNuevoProducto extends JFrame {
 		ImageIcon img2 = new ImageIcon(ico2.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH));
 		lblImagen.setIcon(img2);
 		contentPane.add(lblImagen);
-		btnIntroducirProducto.addActionListener((ActionListener) new ActionListener() {
+		btnIntroducirProducto.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+		    public void actionPerformed(ActionEvent e) {
+		        String textAnadirProducto = textNombreProducto.getText();
+		        int value = (int) ContadorCantidad.getValue();
 
-				String textAnadirProducto = textField.getText();
-				int value = (int) spinner.getValue(); // Convertir a Integer si es necesario
-                JOptionPane.showMessageDialog(contentPane, "Vas a añadir el producto= "+ textAnadirProducto+"\nLa cantidad es= " + value);   
-			}
-            
-        });
+		        ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
 
+		        String opcion = "";
 
-				
-				String textAnadirProducto = textNombreProducto.getText();
-				int value = (int) ContadorCantidad.getValue(); // Convertir a Integer si es necesario
-				
-				ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
-				
-				
-				
-	            String opcion = "";
-				
-	            
-	            
-	            if (rdbtnCarne.isSelected()) {
-	            	textAnadirProducto = "C." + textAnadirProducto;
-                    opcion = "Carne";
-                } else if (rdbtnPescado.isSelected()) {
-                	textAnadirProducto = "P." + textAnadirProducto;
-                    opcion = "Pescado";
-                } else if (rdbtnVardura.isSelected()) {
-                	textAnadirProducto = "V." + textAnadirProducto;
-                    opcion = "Verdura";
-                }
-				
-                JOptionPane.showMessageDialog(contentPane, "Vas a añadir el producto= "+ textAnadirProducto+"\nLa cantidad es= " + value);
-                
-                String consulta = "INSERT INTO Producto (nombreProducto, cantidadProducto) VALUES ('" + textAnadirProducto+ "', '" + value + "')";
-                
-                try {
-					conexion.conectar();
-					System.out.println("Conectado");
-					
-					//conexion.ejecutarInsertDeleteUpdate(consulta);
-					
-					int filasAfectadas = conexion.ejecutarInsertDeleteUpdate(consulta);
-					
-					System.out.println("Fila insertada");
-					
-					conexion.desconectar();
-					System.out.println("Desconectado");
-					
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} 
-                
-             
-			
-            
-        });
-		
-		
+		        if (rdbtnCarne.isSelected()) {
+		            textAnadirProducto = "C." + textAnadirProducto;
+		            opcion = "Carne";
+		        } else if (rdbtnPescado.isSelected()) {
+		            textAnadirProducto = "P." + textAnadirProducto;
+		            opcion = "Pescado";
+		        } else if (rdbtnVerdura.isSelected()) {
+		            textAnadirProducto = "V." + textAnadirProducto;
+		            opcion = "Verdura";
+		        }
 
-		
-		
-		
-		
-		
-		
-		
-		
+		        JOptionPane.showMessageDialog(contentPane, "Vas a añadir el producto= " + textAnadirProducto + "\nLa cantidad es= " + value);
 
-		/*
-		 * Volver al MAIN
-		 */
-		
-		
-		JButton volverMain = new JButton("Volver");
-		volverMain.setLocation(967, 42);
-		volverMain.setSize(168, 58);
-		volverMain.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-            	
-            	ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
-            	
-                // Ocultar este frame
-                setVisible(false);
-                
-                // Mostrar el siguiente frame
-                Main frame2 = new Main();
-                frame2.setVisible(true);
-                
-                try {
-                	
-                	conexion.desconectar();
-					System.out.println("Desconectado");
-					
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-            }
-        });
-        
-        getContentPane().add(volverMain, BorderLayout.CENTER);
-        
-        setVisible(true);
+		        String consulta = "INSERT INTO Producto (nombreProducto, cantidadProducto) VALUES ('" + textAnadirProducto + "', '" + value + "')";
 
+		        try {
+		            conexion.conectar();
+		            System.out.println("Conectado");
+
+		            int filasAfectadas = conexion.ejecutarInsertDeleteUpdate(consulta);
+
+		            System.out.println("Fila insertada");
+
+		            conexion.desconectar();
+		            System.out.println("Desconectado");
+
+		        } catch (SQLException e1) {
+		            e1.printStackTrace();
+		        }
+		    }
+		});
+		
+		
 
 	}
 }

@@ -50,8 +50,6 @@ public class VerProductos extends JFrame {
 			}
 		});
 	}
-	
-	
 
 	/**
 	 * Create the frame.
@@ -120,6 +118,7 @@ public class VerProductos extends JFrame {
 			}
                 
 			}
+
 		);
 		btnImagenPescado.setIcon(new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\pescado.jpg"));
 		btnImagenPescado.setSelectedIcon(new ImageIcon("C:\\Users\\josem\\Desktop\\jowIts\\JowIts\\src\\Imagenes\\pescado.jpg"));
@@ -264,5 +263,9 @@ public class VerProductos extends JFrame {
         
         
     	}
-	}
 
+		}
+		);
+
+	}
+}

@@ -66,6 +66,7 @@ public class RegistroEmpresa extends JFrame {
 		contentPane.setLayout(null);
 
 		RoundedButton btnAnadirEmpresa = new RoundedButton("Añadir Empresa", Color.gray, 50);
+		btnAnadirEmpresa.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		// No sé porqué, pero añadiendo un background, no se ve el cuadrado del boton NO
 		// redondeado
 		btnAnadirEmpresa.setBackground(Color.red);
@@ -105,6 +106,8 @@ public class RegistroEmpresa extends JFrame {
 
 		btnAnadirEmpresa.setBounds(514, 428, 241, 53);
 		RoundBorder roundBorder = new RoundBorder(50);
+		btnAnadirEmpresa.setBorder(roundBorder);
+		contentPane.add(btnAnadirEmpresa);
 		
 		//Botón de atrás
 				JButton btnFlecha = new JButton();
@@ -121,8 +124,7 @@ public class RegistroEmpresa extends JFrame {
 		        });
 				contentPane.add(btnFlecha);
 				btnFlecha.setVisible(true);
-		btnAnadirEmpresa.setBorder(roundBorder);
-		contentPane.add(btnAnadirEmpresa);
+		
 
 		// Este botón solo está añadido por diseño, no tiene funcionalidad!!
 		RoundedButton btnAnadirEmpresa2 = new RoundedButton("", Color.gray, 3);
@@ -131,7 +133,7 @@ public class RegistroEmpresa extends JFrame {
 
 		// Podemos utilizar HTML!!
 		JLabel lblTituloEmpresa = new JLabel("Añade una nueva empresa");
-		lblTituloEmpresa.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblTituloEmpresa.setFont(new Font("Times New Roman", Font.PLAIN, 50));
 		lblTituloEmpresa.setForeground(Color.white);
 		lblTituloEmpresa.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTituloEmpresa.setBackground(SystemColor.textHighlightText);

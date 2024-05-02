@@ -205,6 +205,15 @@ public class RegistroNuevoProducto extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+
+				String textAnadirProducto = textField.getText();
+				int value = (int) spinner.getValue(); // Convertir a Integer si es necesario
+                JOptionPane.showMessageDialog(contentPane, "Vas a añadir el producto= "+ textAnadirProducto+"\nLa cantidad es= " + value);   
+			}
+            
+        });
+
+
 				
 				String textAnadirProducto = textNombreProducto.getText();
 				int value = (int) ContadorCantidad.getValue(); // Convertir a Integer si es necesario
@@ -251,11 +260,12 @@ public class RegistroNuevoProducto extends JFrame {
 				} 
                 
              
-			}
+			
             
         });
 		
 		
+
 		
 		
 		
@@ -264,5 +274,43 @@ public class RegistroNuevoProducto extends JFrame {
 		
 		
 		
+
+		/*
+		 * Volver al MAIN
+		 */
+		
+		
+		JButton volverMain = new JButton("Volver");
+		volverMain.setLocation(967, 42);
+		volverMain.setSize(168, 58);
+		volverMain.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+            	
+            	ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+            	
+                // Ocultar este frame
+                setVisible(false);
+                
+                // Mostrar el siguiente frame
+                Main frame2 = new Main();
+                frame2.setVisible(true);
+                
+                try {
+                	
+                	conexion.desconectar();
+					System.out.println("Desconectado");
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            }
+        });
+        
+        getContentPane().add(volverMain, BorderLayout.CENTER);
+        
+        setVisible(true);
+
+
 	}
 }

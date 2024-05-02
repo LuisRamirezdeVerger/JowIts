@@ -143,7 +143,7 @@ public class RegistroUsuario extends JFrame {
 		contentPane.add(passwordField);
 		
 		
-		/*
+		/* 
 		 * CONFIRMAR CONTRASEÑA
 		 */
 		

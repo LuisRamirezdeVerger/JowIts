@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +18,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import connections.ConexionMySQL;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -25,9 +29,9 @@ public class RegistroNuevoEmpleado extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField textNombreEmpleado;
+	private JTextField textAñadirDNI;
+	private JTextField textTurno;
 
 	/**
 	 * Launch the application.
@@ -89,43 +93,43 @@ public class RegistroNuevoEmpleado extends JFrame {
 		lblTurnoQueTrabajara.setBounds(194, 484, 237, 43);
 		contentPane.add(lblTurnoQueTrabajara);
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.TRAILING);
-		textField.setBounds(798, 380, 237, 43);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		textField.setText("Añadir el nombre del nuevo empleado");
-		textField.addFocusListener(new FocusAdapter() {
+		textNombreEmpleado = new JTextField();
+		textNombreEmpleado.setHorizontalAlignment(SwingConstants.TRAILING);
+		textNombreEmpleado.setBounds(798, 380, 237, 43);
+		contentPane.add(textNombreEmpleado);
+		textNombreEmpleado.setColumns(10);
+		textNombreEmpleado.setText("Añadir el nombre del nuevo empleado");
+		textNombreEmpleado.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				//Creamos evento que al hacer click, elimine el texto que haya.
-				textField.setText("");
+				textNombreEmpleado.setText("");
 			}
 		});
 		
-		textField_1 = new JTextField();
-		textField_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		textField_1.setColumns(10);
-		textField_1.setBounds(798, 434, 237, 43);
-		contentPane.add(textField_1);textField_1.setText("Añadir el DNI");
-		textField_1.addFocusListener(new FocusAdapter() {
+		textAñadirDNI = new JTextField();
+		textAñadirDNI.setHorizontalAlignment(SwingConstants.TRAILING);
+		textAñadirDNI.setColumns(10);
+		textAñadirDNI.setBounds(798, 434, 237, 43);
+		contentPane.add(textAñadirDNI);textAñadirDNI.setText("Añadir el DNI");
+		textAñadirDNI.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				//Creamos evento que al hacer click, elimine el texto que haya.
-				textField_1.setText("");
+				textAñadirDNI.setText("");
 			}
 		});
 		
-		textField_2 = new JTextField();
-		textField_2.setHorizontalAlignment(SwingConstants.TRAILING);
-		textField_2.setColumns(10);
-		textField_2.setBounds(798, 488, 237, 43);
-		contentPane.add(textField_2);textField_2.setText("En que turno trabajará");
-		textField_2.addFocusListener(new FocusAdapter() {
+		textTurno = new JTextField();
+		textTurno.setHorizontalAlignment(SwingConstants.TRAILING);
+		textTurno.setColumns(10);
+		textTurno.setBounds(798, 488, 237, 43);
+		contentPane.add(textTurno);textTurno.setText("En que turno trabajará");
+		textTurno.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				//Creamos evento que al hacer click, elimine el texto que haya.
-				textField_2.setText("");
+				textTurno.setText("");
 			}
 		});
 		
@@ -144,10 +148,32 @@ public class RegistroNuevoEmpleado extends JFrame {
 	        	@Override
 	        	public void actionPerformed(ActionEvent e) {
 	                // Obtener el texto de cada campo de texto
-	                String nombre = textField.getText();
-	                String dni = textField_1.getText();
-	                String turno = textField_2.getText();
+	                String nombre = textNombreEmpleado.getText();
+	                String dni = textAñadirDNI.getText();
+	                String turno = textTurno.getText();
 
+	                String consulta= "INSERT INTO empleados (nombre, dni, turno) VALUES ('nombre_del_empleado', 'dni_del_empleado', 'turno_del_empleado');";
+
+	                ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+	                try {
+	                	
+						conexion.conectar();
+						System.out.println("Conectado");
+						
+						//conexion.ejecutarInsertDeleteUpdate(consulta);
+						
+						int filasAfectadas = conexion.ejecutarInsertDeleteUpdate(consulta);
+						
+						System.out.println("Fila insertada");
+						
+						conexion.desconectar();
+						System.out.println("Desconectado");
+						
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} 
+	                
 	                // Mostrar los datos en un cuadro de diálogo
 	                JOptionPane.showMessageDialog(contentPane,
 	                        "Nombre: " + nombre + "\nDNI: " + dni + "\nTurno: " + turno,

@@ -1,36 +1,48 @@
 package interfacesGraficas;
 
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.Font;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.sql.SQLException;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeModel;
 
 import connections.ConexionMySQL;
 
-import java.awt.Font;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.SpinnerNumberModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.border.LineBorder;
+import javax.swing.SwingConstants;
+import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
 
 public class RegistroNuevoProducto extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textNombreProducto;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -96,12 +108,13 @@ public class RegistroNuevoProducto extends JFrame {
 		lblCantidadDelProducto.setBounds(210, 464, 287, 49);
 		contentPane.add(lblCantidadDelProducto);
 		contentPane.setLayout(null);
-		
+
 		JSpinner ContadorCantidad = new JSpinner();
 		ContadorCantidad.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 		ContadorCantidad.setToolTipText("");
-		ContadorCantidad.setBounds(728, 526, 202, 31);
+		ContadorCantidad.setBounds(728, 477, 202, 31);
 		contentPane.add(ContadorCantidad);
+
 		contentPane.setLayout(null);
 		
 		textNombreProducto = new JTextField();
@@ -119,20 +132,76 @@ public class RegistroNuevoProducto extends JFrame {
 		
 		
 		
+		
+		
+		
 		/*
+		 * Volver al MAIN
+		 */
+		
+		
+		JButton volverMain = new JButton("Volver");
+		volverMain.setLocation(967, 42);
+		volverMain.setSize(168, 58);
+		volverMain.addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) {
+            	
+            	ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+            	
+                // Ocultar este frame
+                setVisible(false);
+                
+                // Mostrar el siguiente frame
+                Main frame2 = new Main();
+                frame2.setVisible(true);
+                
+                try {
+                	
+                	conexion.desconectar();
+					System.out.println("Desconectado");
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            }
+        });
+        
+        getContentPane().add(volverMain, BorderLayout.CENTER);
+        
+        JRadioButton rdbtnCarne = new JRadioButton("Carne");
+        rdbtnCarne.setBounds(1077, 405, 109, 23);
+        contentPane.add(rdbtnCarne);
+        buttonGroup.add(rdbtnCarne);
+        
+        JRadioButton rdbtnPescado = new JRadioButton("Pescado");
+        rdbtnPescado.setBounds(1077, 431, 109, 23);
+        contentPane.add(rdbtnPescado);
+        buttonGroup.add(rdbtnPescado);
+        
+        JRadioButton rdbtnVardura = new JRadioButton("Verdura");
+        rdbtnVardura.setBounds(1077, 457, 109, 23);
+        contentPane.add(rdbtnVardura);
+        buttonGroup.add(rdbtnVardura);
+        
+        setVisible(true);
+		
+        /*
 		 * Boton que enviara todo
 		 */
 		
-		JButton btnNewButton = new JButton("Introducir el producto");
-		btnNewButton.setBounds(915, 533, 247, 102);
-		contentPane.add(btnNewButton);
+		JButton btnIntroducirProducto = new JButton("Introducir el producto");
+		btnIntroducirProducto.setBounds(915, 533, 247, 102);
+		contentPane.add(btnIntroducirProducto);
 		
 		JLabel lblImagen = new JLabel("Logo");
 		lblImagen.setBounds(344, 33, 573, 420);
 		ImageIcon img2 = new ImageIcon(ico2.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH));
 		lblImagen.setIcon(img2);
 		contentPane.add(lblImagen);
-		btnNewButton.addActionListener((ActionListener) new ActionListener() {
+		btnIntroducirProducto.addActionListener((ActionListener) new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -151,9 +220,26 @@ public class RegistroNuevoProducto extends JFrame {
 				
 				ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
 				
+				
+				
+	            String opcion = "";
+				
+	            
+	            
+	            if (rdbtnCarne.isSelected()) {
+	            	textAnadirProducto = "C." + textAnadirProducto;
+                    opcion = "Carne";
+                } else if (rdbtnPescado.isSelected()) {
+                	textAnadirProducto = "P." + textAnadirProducto;
+                    opcion = "Pescado";
+                } else if (rdbtnVardura.isSelected()) {
+                	textAnadirProducto = "V." + textAnadirProducto;
+                    opcion = "Verdura";
+                }
+				
                 JOptionPane.showMessageDialog(contentPane, "Vas a añadir el producto= "+ textAnadirProducto+"\nLa cantidad es= " + value);
                 
-                 String consulta = "INSERT INTO Producto (nombreProducto, cantidadProducto) VALUES ('" + textAnadirProducto+ "', '" + value + "')";
+                String consulta = "INSERT INTO Producto (nombreProducto, cantidadProducto) VALUES ('" + textAnadirProducto+ "', '" + value + "')";
                 
                 try {
 					conexion.conectar();
@@ -179,6 +265,16 @@ public class RegistroNuevoProducto extends JFrame {
         });
 		
 		
+
+		
+		
+		
+		
+		
+		
+		
+		
+
 		/*
 		 * Volver al MAIN
 		 */
@@ -214,6 +310,7 @@ public class RegistroNuevoProducto extends JFrame {
         getContentPane().add(volverMain, BorderLayout.CENTER);
         
         setVisible(true);
+
 
 	}
 }

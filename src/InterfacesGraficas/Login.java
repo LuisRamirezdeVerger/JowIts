@@ -138,6 +138,8 @@ public class Login extends JFrame {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     btnConectar.doClick();
+                }if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    dispose();
                 }
             }
         });

@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.SystemColor;
@@ -139,6 +140,7 @@ public class Main extends JFrame {
 		JButton btnSalir = new JButton("Salir de la aplicación");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(contentPane, "Gracias por usar JowIts!", "Saliendo de la aplicación. ", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			}
 		});

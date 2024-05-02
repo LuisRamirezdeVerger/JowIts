@@ -23,7 +23,7 @@ import componentes.Usuario;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-public class Main extends JFrame {
+public class MAIN extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -35,7 +35,7 @@ public class Main extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Main frame = new Main();
+					MAIN frame = new MAIN();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +47,7 @@ public class Main extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Main() {
+	public MAIN() {
 		setBackground(Color.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -73,16 +73,16 @@ public class Main extends JFrame {
 		ImageIcon ico2 =new ImageIcon(getClass().getResource("/imagenes/logo2.png"));
 		ImageIcon img2 =new ImageIcon(ico2.getImage().getScaledInstance(fondoLogo.getWidth(), fondoLogo.getHeight(), Image.SCALE_SMOOTH));
 		
-		JButton btnRegistrarProducto = new JButton("Registrar Nuevo Producto");
-		btnRegistrarProducto.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                RegistroNuevoProducto nuevoProducto = new RegistroNuevoProducto();
-                nuevoProducto.setVisible(true);
-                dispose();
-            } 
-        });
-		btnRegistrarProducto.setBounds(52, 260, 228, 89);
-		contentPane.add(btnRegistrarProducto);
+//		JButton btnRegistrarProducto = new JButton("Registrar Nuevo Producto");
+//		btnRegistrarProducto.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                RegistroNuevoProducto nuevoProducto = new RegistroNuevoProducto();
+//                nuevoProducto.setVisible(true);
+//                dispose();
+//            } 
+//        });
+//		btnRegistrarProducto.setBounds(52, 260, 228, 89);
+//		contentPane.add(btnRegistrarProducto);
 		
 		JLabel lblWelcomeToJowits = new JLabel("Welcome to jowIts, " + Usuario.getNombreUsuario() + ". " );
 		lblWelcomeToJowits.setHorizontalAlignment(SwingConstants.CENTER);
@@ -114,28 +114,28 @@ public class Main extends JFrame {
 		getContentPane().add(btnCerrarSesion, BorderLayout.CENTER);
 		btnCerrarSesion.setBounds(88, 533, 228, 89);
 		contentPane.add(btnCerrarSesion);
-		
-		JButton btnRegistrarEmpleado = new JButton("Registrar Nuevo Empleado");
-		btnRegistrarEmpleado.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                RegistroNuevoEmpleado registroEmpleado = new RegistroNuevoEmpleado();
-                registroEmpleado.setVisible(true);
-                dispose();
-            }
-        });
-		btnRegistrarEmpleado.setBounds(52, 127, 228, 89);
-		contentPane.add(btnRegistrarEmpleado);
-		
-		JButton btnRegistrarCategoria = new JButton("Registrar Nueva Categoría");
-		btnRegistrarCategoria.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                CrearCategoria crearCategoria = new CrearCategoria();
-                crearCategoria.setVisible(true);
-                dispose();
-            }
-        });
-		btnRegistrarCategoria.setBounds(984, 127, 174, 89);
-		contentPane.add(btnRegistrarCategoria);
+//		
+//		JButton btnRegistrarEmpleado = new JButton("Registrar Nuevo Empleado");
+//		btnRegistrarEmpleado.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                RegistroNuevoEmpleado registroEmpleado = new RegistroNuevoEmpleado();
+//                registroEmpleado.setVisible(true);
+//                dispose();
+//            }
+//        });
+//		btnRegistrarEmpleado.setBounds(52, 127, 228, 89);
+//		contentPane.add(btnRegistrarEmpleado);
+//		
+//		JButton btnRegistrarCategoria = new JButton("Registrar Nueva Categoría");
+//		btnRegistrarCategoria.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                CrearCategoria crearCategoria = new CrearCategoria();
+//                crearCategoria.setVisible(true);
+//                dispose();
+//            }
+//        });
+//		btnRegistrarCategoria.setBounds(984, 127, 174, 89);
+//		contentPane.add(btnRegistrarCategoria);
 		
 		JButton btnSalir = new JButton("Salir de la aplicación");
 		btnSalir.addActionListener(new ActionListener() {
@@ -147,7 +147,82 @@ public class Main extends JFrame {
 		btnSalir.setBounds(966, 584, 192, 52);
 		contentPane.add(btnSalir);
 		
-
+		JButton btnRegistros = new JButton("REGISTROS");
+		btnRegistros.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnRegistros.setBounds(88, 268, 164, 94);
+		contentPane.add(btnRegistros);
+		btnRegistros.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+        	  JPanel panel = new JPanel();
+            JButton button1 = new JButton("Opción 1");
+            JButton button2 = new JButton("Opción 2");
+            JButton button3 = new JButton("Opción 3");
+            JButton button4 = new JButton("Opción 4");
+            panel.add(button1);
+            panel.add(button2);
+            panel.add(button3);
+            panel.add(button4);
+            
+            // Mostrar el panel dentro de un JOptionPane
+            int option = JOptionPane.showOptionDialog(contentPane, panel, "Selecciona una opción",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                    new Object[]{"Cancelar"}, null);
+            
+            // Realizar acciones basadas en la opción seleccionada
+            switch (option) {
+                case 0: // El usuario seleccionó el primer botón
+                    System.out.println("El usuario seleccionó Opción 1");
+                    break;
+                case 1: // El usuario seleccionó el segundo botón
+                    System.out.println("El usuario seleccionó Opción 2");
+                    break;
+                case 2: // El usuario seleccionó el tercer botón
+                    System.out.println("El usuario seleccionó Opción 3");
+                    break;
+                case 3: // El usuario seleccionó el cuarto botón
+                    System.out.println("El usuario seleccionó Opción 4");
+                    break;
+                default: // El usuario cerró el diálogo o seleccionó Cancelar
+                    System.out.println("El usuario canceló");
+                    break;
+            }
+          }
+      });
+		
+		
+		
+		
+		
+		
+		
+		
+		JButton btnVisualizacion = new JButton("VISUALIZACION");
+		btnVisualizacion.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnVisualizacion.setBounds(1011, 268, 164, 94);
+		contentPane.add(btnVisualizacion);
+		
+		
+		
+		
+		/*
+		 * BOTON REGISTRO
+		 */
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 }

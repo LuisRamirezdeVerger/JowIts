@@ -53,7 +53,7 @@ public class Main extends JFrame {
 		setBounds(100, 100, 1280, 720);
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.BLACK);
-		contentPane.setBackground(new Color(240, 230, 140));
+		contentPane.setBackground(new Color(131, 185, 245));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
 		setContentPane(contentPane);
@@ -167,10 +167,12 @@ public class Main extends JFrame {
             JButton button1 = new JButton("Producto");
             JButton button2 = new JButton("Empleado");
             JButton button3 = new JButton("Usuario");
+            JButton button4 = new JButton("Categoria");
             
             panel.add(button1);
             panel.add(button2);
             panel.add(button3);
+            panel.add(button4);
           
             button1.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -202,6 +204,16 @@ public class Main extends JFrame {
                 }
             });
             
+            button4.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    // Crear y mostrar el nuevo frame
+                	CrearCategoria CATEGORIA = new CrearCategoria();
+                	CATEGORIA.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cierra solo este frame, no toda la aplicación
+                	CATEGORIA.setVisible(true);
+                	dispose();
+                }
+            });
+            
             
             
             // Mostrar el panel dentro de un JOptionPane
@@ -214,9 +226,7 @@ public class Main extends JFrame {
                 case 0: // El usuario seleccionó el primer botón
                     System.out.println("El usuario seleccionó Opción 1");
                     
-                    
-                    
-                    
+                                        
                     break;
                 case 1: // El usuario seleccionó el segundo botón
                     System.out.println("El usuario seleccionó Opción 2");
@@ -225,6 +235,11 @@ public class Main extends JFrame {
                     break;
                 case 2: // El usuario seleccionó el tercer botón
                     System.out.println("El usuario seleccionó Opción 3");
+                    
+                    
+                    break;
+                case 3: // El usuario seleccionó el tercer botón
+                    System.out.println("El usuario seleccionó Opción 4");
                     
                     
                     break;

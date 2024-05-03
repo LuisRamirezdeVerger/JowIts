@@ -59,7 +59,7 @@ public class VerProductos extends JFrame {
 		setBounds(200, 100, 1280, 720);
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(240, 230, 140));
-		contentPane.setBackground(new Color(240, 230, 140));
+		contentPane.setBackground(new Color(131, 185, 245));
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		setLocationRelativeTo(null);
 		setContentPane(contentPane);

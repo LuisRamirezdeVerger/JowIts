@@ -73,10 +73,20 @@ public class Login extends JFrame {
 		contentPane.setBackground(new Color(131, 185, 245));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JEditorPane editorPane = new JEditorPane();
+		editorPane.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE ) {
+                    System.out.println("Hello world");
+                    dispose();
+                 }
+            }
+        });
 		contentPane.add(editorPane);
 
 		JTextField txtNombreUsuario = new JTextField();
@@ -209,7 +219,6 @@ public class Login extends JFrame {
 		btnConectar.setForeground(Color.BLACK);
 		// btnConectar.setBackground(Color.ORANGE);
 		btnConectar.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 15));
-		
 		btnConectar.setBounds(444, 513, 376, 60);
 		contentPane.add(btnConectar);
 
@@ -225,6 +234,24 @@ public class Login extends JFrame {
 		getContentPane().add(btnAtras, BorderLayout.CENTER);
 		btnAtras.setBounds(52, 447, 174, 89);
 		contentPane.add(btnAtras);
+		
+		JLabel lblOlvidePass = new JLabel("¿Olvidaste tu contraseña?");
+		lblOlvidePass.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(contentPane, "Si ha olvidado su contraseña, póngase en contacto con el departmento técnico de JowIts"+ " \n " + "                     ----- support@jowIts.com -----", "¿Olvidó la contraseña?", JOptionPane.WARNING_MESSAGE);
+			}
+		});
+		lblOlvidePass.setHorizontalAlignment(SwingConstants.CENTER);
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame mainFrame = new MainFrame();
+				mainFrame.setVisible(true);
+				dispose();
+			}
+		});
+		lblOlvidePass.setBounds(454, 584, 349, 21);
+		contentPane.add(lblOlvidePass);
 
 
 	}

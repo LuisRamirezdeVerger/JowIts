@@ -167,11 +167,11 @@ public class RegistroUsuario extends JFrame {
 		contentPane.add(lblPass);
 		
 		JLabel lblConfCon = new JLabel("Confirmar Contraseña");
-		lblConfCon.setBounds(784, 391, 116, 36);
+		lblConfCon.setBounds(784, 391, 200, 36);
 		contentPane.add(lblConfCon);
 		
 		//BOTÓN DE ATRÁS
-				JButton btnFlecha = new JButton("Atrás");
+				JButton btnFlecha = new JButton("Volver");
 				btnFlecha.addActionListener(new ActionListener() {
 		            public void actionPerformed(ActionEvent e) {
 		                MainFrame mainFrame = new MainFrame();
@@ -207,6 +207,13 @@ public class RegistroUsuario extends JFrame {
 		
 		JEditorPane dtrpnCIF = new JEditorPane();
 		dtrpnCIF.setText("X-01010101");
+		dtrpnCIF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				//Creamos evento que al hacer click, elimine el texto que haya.
+				dtrpnCIF.setText("");
+			}
+		});
 		dtrpnCIF.setBounds(528, 397, 200, 30);
 		contentPane.add(dtrpnCIF);
 		 
@@ -241,20 +248,31 @@ public class RegistroUsuario extends JFrame {
 					 String mensajeError = e1.getMessage();
 			            if (mensajeError.contains("foreign key constraint fails")) {
 			                JOptionPane.showMessageDialog(contentPane, "La empresa con CIF '" + textoCIF + "' no existe en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+			                return; 
 			            } else if (mensajeError.contains("unique constraint")) {
 			                JOptionPane.showMessageDialog(contentPane, "El usuario con DNI '" + textoDNI + "' ya existe en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-			            } else if (mensajeError.contains("duplicate entry")) {
-			                JOptionPane.showMessageDialog(contentPane, "El usuario con DNI '" + textoDNI + "' ya existe en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+			                return; 
 			            } else if (!textoPassword1.equals(textoPassword2)) {
 							JOptionPane.showMessageDialog(passwordField, "Las contraseñas no son iguales" + e1.getMessage());
 						} else {
-			                JOptionPane.showMessageDialog(contentPane, "Error intentado realizar el registro en la base de datos: " + mensajeError, "Error", JOptionPane.ERROR_MESSAGE);
-			            }
+			                JOptionPane.showMessageDialog(contentPane, "Error intentado realizar el registro en la base de datos: " + mensajeError, "Error de base de datos", JOptionPane.ERROR_MESSAGE);
+			                return; 
+						}
 			        }
 				
-				if (!textoPassword1.equals(textoPassword2)) {
-					JOptionPane.showMessageDialog(passwordField, "Las contraseñas no son iguales");
-				}
+				// Verificamos si algún campo está vacío
+		        if (textoNombre.isEmpty() || textoDNI.isEmpty() || textoCIF.isEmpty() || textoPassword1.isEmpty() || textoPassword2.isEmpty()) {
+		            JOptionPane.showMessageDialog(contentPane, "Por favor, complete todos los campos", "Error de campos vacíos", JOptionPane.ERROR_MESSAGE);
+		            // Detenemos la ejecución del método
+		            return; 
+		        }
+
+		        // Verificamos si las contraseñas coinciden
+		        if (!textoPassword1.equals(textoPassword2)) {
+		            JOptionPane.showMessageDialog(passwordField, "Las contraseñas no coinciden", "Error en la contraseña", JOptionPane.ERROR_MESSAGE);
+		            // Detenemos la ejecución del método
+		            return; 
+		        }
 			}
         });
 	}

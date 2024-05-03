@@ -140,6 +140,18 @@ public class RegistroEmpresa extends JFrame {
 		lblTituloEmpresa.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED)); // Agrega un borde en relieve
 		lblTituloEmpresa.setBounds(10, 11, 1244, 94);
 		contentPane.add(lblTituloEmpresa);
+		
+		//Botón registro usuario
+		JButton btnRegistrate = new JButton("Registrar usuario nuevo");
+		btnRegistrate.setBounds(1012, 517, 181, 69);
+		btnRegistrate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistroUsuario registroUsuario = new RegistroUsuario();
+				registroUsuario.setVisible(true);
+				dispose();
+			}
+		});
+		contentPane.add(btnRegistrate);
 
 		// Panel para dar fondo transparente al título
 		JPanel panelTitulo = new JPanel();

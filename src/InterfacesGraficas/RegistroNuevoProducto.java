@@ -103,7 +103,7 @@ public class RegistroNuevoProducto extends JFrame {
 		contentPane.add(lblNewLabel);
 		contentPane.setLayout(null);
 		
-		JLabel lblCantidadDelProducto = new JLabel("Cantidad del Producto a añadir");
+		JLabel lblCantidadDelProducto = new JLabel("Cantidad del Producto");
 		lblCantidadDelProducto.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblCantidadDelProducto.setBounds(210, 464, 287, 49);
 		contentPane.add(lblCantidadDelProducto);
@@ -189,19 +189,75 @@ public class RegistroNuevoProducto extends JFrame {
         setVisible(true);
 		
         /*
-		 * Boton que enviara todo
+		 * Boton que elimina producto
 		 */
 		
-		JButton btnIntroducirProducto = new JButton("Introducir el producto");
-		btnIntroducirProducto.setBounds(915, 533, 247, 102);
-		contentPane.add(btnIntroducirProducto);
+		JButton btnEliminarProducto = new JButton("ELIMINAR");
+		btnEliminarProducto.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnEliminarProducto.setBounds(1000, 567, 186, 68);
+		contentPane.add(btnEliminarProducto);
+		
+		btnEliminarProducto.addActionListener(new ActionListener() {
+			@Override
+		    public void actionPerformed(ActionEvent e) {
+		        String textAnadirProducto = textNombreProducto.getText();
+		        int value = (int) ContadorCantidad.getValue();
+
+		        ConexionMySQL conexion = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
+
+		        String opcion = "";
+
+		        if (rdbtnCarne.isSelected()) {
+		            textAnadirProducto = "C." + textAnadirProducto;
+		            opcion = "Carne";
+		        } else if (rdbtnPescado.isSelected()) {
+		            textAnadirProducto = "P." + textAnadirProducto;
+		            opcion = "Pescado";
+		        } else if (rdbtnVerdura.isSelected()) {
+		            textAnadirProducto = "V." + textAnadirProducto;
+		            opcion = "Verdura";
+		        }
+
+		        JOptionPane.showMessageDialog(contentPane, "Vas a eliminar el producto= " + textAnadirProducto + "\nLa cantidad a eliminar es= " + value);
+
+		        String consulta = "DELETE FROM Producto WHERE nombreProducto = '" + textAnadirProducto + "' AND cantidadProducto = " + value;
+
+
+		        try {
+		            conexion.conectar();
+		            System.out.println("Conectado");
+
+		            int filasAfectadas = conexion.ejecutarInsertDeleteUpdate(consulta);
+
+		            System.out.println("Fila modificada");
+
+		            conexion.desconectar();
+		            System.out.println("Desconectado");
+
+		        } catch (SQLException e1) {
+		            e1.printStackTrace();
+		        }
+		    }
+		});
 		
 		JLabel lblImagen = new JLabel("Logo");
 		lblImagen.setBounds(344, 33, 573, 420);
 		ImageIcon img2 = new ImageIcon(ico2.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH));
 		lblImagen.setIcon(img2);
 		contentPane.add(lblImagen);
-		btnIntroducirProducto.addActionListener(new ActionListener() {
+		
+		
+		
+		
+		/*
+		 * Boton que añade producto
+		 */
+		
+		JButton btnAnadirProducto = new JButton("AÑADIR");
+		btnAnadirProducto.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnAnadirProducto.setBounds(804, 567, 186, 68);
+		contentPane.add(btnAnadirProducto);
+		btnAnadirProducto.addActionListener(new ActionListener() {
 			@Override
 		    public void actionPerformed(ActionEvent e) {
 		        String textAnadirProducto = textNombreProducto.getText();

@@ -166,12 +166,12 @@ public class Main extends JFrame {
         	  JPanel panel = new JPanel();
             JButton button1 = new JButton("Producto");
             JButton button2 = new JButton("Empleado");
-            JButton button3 = new JButton("Usuario");
+          //JButton button3 = new JButton("Usuario");
             JButton button4 = new JButton("Categoria");
             
             panel.add(button1);
             panel.add(button2);
-            panel.add(button3);
+          //panel.add(button3);
             panel.add(button4);
           
             button1.addActionListener(new ActionListener() {
@@ -194,15 +194,15 @@ public class Main extends JFrame {
                 }
             });
             
-            button3.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    // Crear y mostrar el nuevo frame
-                	RegistroUsuario USUARIO = new RegistroUsuario();
-                	USUARIO.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cierra solo este frame, no toda la aplicación
-                	USUARIO.setVisible(true);
-                	dispose();
-                }
-            });
+//            button3.addActionListener(new ActionListener() {
+//                public void actionPerformed(ActionEvent e) {
+//                    // Crear y mostrar el nuevo frame
+//                	RegistroUsuario USUARIO = new RegistroUsuario();
+//                	USUARIO.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cierra solo este frame, no toda la aplicación
+//                	USUARIO.setVisible(true);
+//                	dispose();
+//                }
+//            });
             
             button4.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -233,11 +233,11 @@ public class Main extends JFrame {
                     
                     
                     break;
-                case 2: // El usuario seleccionó el tercer botón
-                    System.out.println("El usuario seleccionó Opción 3");
-                    
-                    
-                    break;
+//                case 2: // El usuario seleccionó el tercer botón
+//                    System.out.println("El usuario seleccionó Opción 3");
+//                    
+//                    
+//                    break;
                 case 3: // El usuario seleccionó el tercer botón
                     System.out.println("El usuario seleccionó Opción 4");
                     

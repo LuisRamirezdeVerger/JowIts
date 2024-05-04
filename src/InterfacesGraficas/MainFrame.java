@@ -41,13 +41,27 @@ public class MainFrame extends JFrame {
                     // Obtiene la contraseña ingresada por el usuario
                     char[] passwordChars = passwordField.getPassword();
                     String password = new String(passwordChars);
-                
+                    //Aquí añadiremos el panel de administración
                     Main nuevoFrame = new Main();
                     nuevoFrame.setVisible(true);
                     dispose(); 
                 }
             }
         }
+        contentPane.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+               if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                   int opcion = JOptionPane.showConfirmDialog(contentPane, "¿Deseas cerrar la aplicación?", "Confirmar salida de la aplicación", JOptionPane.YES_NO_OPTION);
+		        // Verificamos la opción seleccionada por el usuario
+		        if (opcion == JOptionPane.YES_OPTION) {
+		            JOptionPane.showMessageDialog(contentPane, "Gracias por usar 'JowIts'!"); 
+		            dispose();
+		        }
+                }
+               
+            }
+        });
     }
 
 	/**
@@ -93,7 +107,7 @@ public class MainFrame extends JFrame {
         });
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		 
 		//////////// Key Listener //////////////
 		// Agregamos el KeyListener al contentPane
         contentPane.addKeyListener(new KeyListener() {

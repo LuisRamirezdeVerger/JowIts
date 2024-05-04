@@ -113,29 +113,7 @@ public class Main extends JFrame {
         });
 		getContentPane().add(btnCerrarSesion, BorderLayout.CENTER);
 		btnCerrarSesion.setBounds(88, 533, 228, 89);
-		contentPane.add(btnCerrarSesion);
-//		
-//		JButton btnRegistrarEmpleado = new JButton("Registrar Nuevo Empleado");
-//		btnRegistrarEmpleado.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                RegistroNuevoEmpleado registroEmpleado = new RegistroNuevoEmpleado();
-//                registroEmpleado.setVisible(true);
-//                dispose();
-//            }
-//        });
-//		btnRegistrarEmpleado.setBounds(52, 127, 228, 89);
-//		contentPane.add(btnRegistrarEmpleado);
-//		
-//		JButton btnRegistrarCategoria = new JButton("Registrar Nueva Categoría");
-//		btnRegistrarCategoria.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                CrearCategoria crearCategoria = new CrearCategoria();
-//                crearCategoria.setVisible(true);
-//                dispose();
-//            }
-//        });
-//		btnRegistrarCategoria.setBounds(984, 127, 174, 89);
-//		contentPane.add(btnRegistrarCategoria);
+		contentPane.add(btnCerrarSesion);	
 		
 		JButton btnSalir = new JButton("Salir de la aplicación");
 		btnSalir.addActionListener(new ActionListener() {

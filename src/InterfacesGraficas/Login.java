@@ -14,6 +14,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -234,6 +235,22 @@ public class Login extends JFrame {
 		getContentPane().add(btnAtras, BorderLayout.CENTER);
 		btnAtras.setBounds(52, 447, 174, 89);
 		contentPane.add(btnAtras);
+		
+		 //Botón teclado en pantalla
+        JButton btnTeclado = new JButton("Teclado de Pantalla");
+        btnTeclado.setBounds(1065, 608, 159, 50);
+        contentPane.add(btnTeclado);
+        btnTeclado.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	    try {
+        	        // Ejecutar el comando para abrir el teclado de pantalla en Windows
+        	        Runtime.getRuntime().exec("cmd /c start osk");
+        	    } catch (IOException ex) {
+        	        ex.printStackTrace();
+        	        JOptionPane.showMessageDialog(contentPane, "No se pudo abrir el teclado de pantalla.");
+        	    }
+        	}
+        });
 		
 		JLabel lblOlvidePass = new JLabel("¿Olvidaste tu contraseña?");
 		lblOlvidePass.addMouseListener(new MouseAdapter() {

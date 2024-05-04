@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
@@ -23,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 
 import componentes.RoundBorder;
 import componentes.RoundedButton;
@@ -83,7 +85,7 @@ public class RegistroEmpresa extends JFrame {
 				btnAnadirEmpresa.setBackground(Color.red);
 				String textoCif = txtCif.getText();
 				String textoEmpresa = txtIntroduceEmpresa.getText();
-				
+
 				ConexionMySQL connectInv = new ConexionMySQL("freedb_wito.medac", "8DKQRDXu6Xumm@r", "freedb_medac420");
 				try {
 					connectInv.conectar();
@@ -92,8 +94,8 @@ public class RegistroEmpresa extends JFrame {
 							+ textoEmpresa + "')";
 					int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
 
-		                JOptionPane.showMessageDialog(btnAnadirEmpresa, "Empresa registrada con éxito. ");
-		            
+					JOptionPane.showMessageDialog(btnAnadirEmpresa, "Empresa registrada con éxito. ");
+
 					System.out.println("Fila insertada!");
 					connectInv.desconectar();
 					System.out.println("desConectado de la BBDD");
@@ -108,23 +110,38 @@ public class RegistroEmpresa extends JFrame {
 		RoundBorder roundBorder = new RoundBorder(50);
 		btnAnadirEmpresa.setBorder(roundBorder);
 		contentPane.add(btnAnadirEmpresa);
+
+		// Botón de atrás
+		JButton btnFlecha = new JButton();
+		btnFlecha.setToolTipText("Pulsa para volver al menú principal");
+		btnFlecha.setText("Atrás");
+		btnFlecha.setSize(116, 50);
+		btnFlecha.setLocation(61, 526);
+		btnFlecha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame mainFrame = new MainFrame();
+				mainFrame.setVisible(true);
+				dispose();
+			}
+		});
+		contentPane.add(btnFlecha);
+		btnFlecha.setVisible(true);
 		
-		//Botón de atrás
-				JButton btnFlecha = new JButton();
-				btnFlecha.setToolTipText("Pulsa para volver al menú principal");
-				btnFlecha.setText("Atrás");
-				btnFlecha.setSize(116, 50);
-				btnFlecha.setLocation(61, 526);
-				btnFlecha.addActionListener(new ActionListener() {
-		            public void actionPerformed(ActionEvent e) {
-		                MainFrame mainFrame = new MainFrame();
-		                mainFrame.setVisible(true);
-		            	dispose();
-		            }
-		        });
-				contentPane.add(btnFlecha);
-				btnFlecha.setVisible(true);
-		
+		 //Botón teclado en pantalla
+        JButton btnTeclado = new JButton("Teclado de Pantalla");
+        btnTeclado.setBounds(1022, 607, 159, 50);
+        contentPane.add(btnTeclado);
+        btnTeclado.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	    try {
+        	        // Ejecutar el comando para abrir el teclado de pantalla en Windows
+        	        Runtime.getRuntime().exec("cmd /c start osk");
+        	    } catch (IOException ex) {
+        	        ex.printStackTrace();
+        	        JOptionPane.showMessageDialog(contentPane, "No se pudo abrir el teclado de pantalla.");
+        	    }
+        	}
+        });
 
 		// Este botón solo está añadido por diseño, no tiene funcionalidad!!
 		RoundedButton btnAnadirEmpresa2 = new RoundedButton("", Color.gray, 3);
@@ -140,8 +157,8 @@ public class RegistroEmpresa extends JFrame {
 		lblTituloEmpresa.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED)); // Agrega un borde en relieve
 		lblTituloEmpresa.setBounds(10, 11, 1244, 94);
 		contentPane.add(lblTituloEmpresa);
-		
-		//Botón registro usuario
+
+		// Botón registro usuario
 		JButton btnRegistrate = new JButton("Registrar usuario nuevo");
 		btnRegistrate.setBounds(1012, 517, 181, 69);
 		btnRegistrate.addActionListener(new ActionListener() {
@@ -163,7 +180,8 @@ public class RegistroEmpresa extends JFrame {
 
 		txtCif = new JTextField("CIF");
 		txtCif.setHorizontalAlignment(SwingConstants.CENTER);
-		txtCif.setBounds(525, 359, 221, 30);
+		txtCif.setBorder(new LineBorder(new Color(0, 0, 128), 2, true));
+		txtCif.setBounds(525, 359, 221, 44);
 		txtCif.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -179,10 +197,11 @@ public class RegistroEmpresa extends JFrame {
 		lblFondoLogo.setBackground(new Color(0, 0, 0, 80));
 		ImageIcon icono = new ImageIcon(getIcono.getImage().getScaledInstance(lblFondoLogo.getWidth(),
 				lblFondoLogo.getHeight(), Image.SCALE_SMOOTH));
-		
+
 		txtIntroduceEmpresa = new JTextField("Introduce Empresa");
 		txtIntroduceEmpresa.setHorizontalAlignment(SwingConstants.CENTER);
-		txtIntroduceEmpresa.setBounds(525, 269, 221, 30);
+		txtIntroduceEmpresa.setBorder(new LineBorder(new Color(0, 0, 128), 2, true));
+		txtIntroduceEmpresa.setBounds(525, 269, 221, 44);
 		txtIntroduceEmpresa.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {

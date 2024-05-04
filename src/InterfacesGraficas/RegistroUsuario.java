@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -217,7 +218,21 @@ public class RegistroUsuario extends JFrame {
 		dtrpnCIF.setBounds(528, 397, 200, 30);
 		contentPane.add(dtrpnCIF);
 		 
-		
+		 //Botón teclado en pantalla
+        JButton btnTeclado = new JButton("Teclado de Pantalla");
+        btnTeclado.setBounds(1065, 608, 159, 50);
+        contentPane.add(btnTeclado);
+        btnTeclado.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	    try {
+        	        // Ejecutar el comando para abrir el teclado de pantalla en Windows
+        	        Runtime.getRuntime().exec("cmd /c start osk");
+        	    } catch (IOException ex) {
+        	        ex.printStackTrace();
+        	        JOptionPane.showMessageDialog(contentPane, "No se pudo abrir el teclado de pantalla.");
+        	    }
+        	}
+        });
 		
 		btnRegistro.addActionListener(new ActionListener() {
 			@Override

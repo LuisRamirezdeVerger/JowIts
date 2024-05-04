@@ -26,11 +26,11 @@ public class MainFrame extends JFrame {
     private boolean teclaSPresionada = false;
     private boolean teclaAPresionada = false;
 
-    // Método para verificar si se ha pulsado una combinación de teclas
+    // Método para verificar la combinación de teclas
     private void checkKeyCombination() {
         if (teclaWPresionada && teclaSPresionada && teclaAPresionada) {
             JOptionPane.showMessageDialog(contentPane, "¡Has seleccionado el panel de Administración!");
-            int opcion = JOptionPane.showConfirmDialog(this, "¿Deseas abrir el menú?", "Confirmar salida de la aplicación", JOptionPane.YES_NO_OPTION);
+            int opcion = JOptionPane.showConfirmDialog(this, "¿Deseas abrir el menú?", "Confirmar apertura de menú", JOptionPane.YES_NO_OPTION);
             
             if (opcion == JOptionPane.YES_OPTION) {
             	JPasswordField passwordField = new JPasswordField();
@@ -109,7 +109,6 @@ public class MainFrame extends JFrame {
 		contentPane.setLayout(null);
 		 
 		//////////// Key Listener //////////////
-		// Agregamos el KeyListener al contentPane
         contentPane.addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -148,8 +147,6 @@ public class MainFrame extends JFrame {
         contentPane.setFocusable(true);
         contentPane.requestFocus();
     
-
-		//////////////////////////////////////////////
 
 		JButton btnLogin = new JButton("Log in");
 		btnLogin.addActionListener(new ActionListener() {

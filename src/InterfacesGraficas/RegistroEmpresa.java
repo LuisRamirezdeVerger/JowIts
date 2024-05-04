@@ -69,8 +69,6 @@ public class RegistroEmpresa extends JFrame {
 
 		RoundedButton btnAnadirEmpresa = new RoundedButton("Añadir Empresa", Color.gray, 50);
 		btnAnadirEmpresa.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		// No sé porqué, pero añadiendo un background, no se ve el cuadrado del boton NO
-		// redondeado
 		btnAnadirEmpresa.setBackground(Color.red);
 		btnAnadirEmpresa.addFocusListener(new FocusAdapter() {
 			@Override
@@ -92,6 +90,7 @@ public class RegistroEmpresa extends JFrame {
 					System.out.println("Conectado a la BBDD");
 					String consulta = "INSERT INTO Empresa (CIF, nombreEmpresa) VALUES ('" + textoCif + "', '"
 							+ textoEmpresa + "')";
+					@SuppressWarnings("unused")
 					int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
 
 					JOptionPane.showMessageDialog(btnAnadirEmpresa, "Empresa registrada con éxito. ");

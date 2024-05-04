@@ -1,6 +1,5 @@
 package interfacesGraficas;
 
-import java.sql.Connection;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -10,8 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
@@ -254,7 +251,8 @@ public class RegistroUsuario extends JFrame {
 					connectInv.conectar();
 					System.out.println("Conectado a la BBDD");
 					String consulta = "INSERT INTO Usuario (nombreUsuario, dniUsuario, passUsuario, Empresa_CIF) VALUES ('" + textoNombre + "', '" + textoDNI + "', '" + textoPassword2 + "', '" + textoCIF + "')";
-			        int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
+			        @SuppressWarnings("unused")
+					int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
 			        System.out.println("Fila insertada!");
 			        JOptionPane.showMessageDialog(contentPane, "Registro existoso!");
 			        connectInv.desconectar();

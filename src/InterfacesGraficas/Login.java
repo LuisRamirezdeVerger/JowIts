@@ -61,8 +61,6 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 
-	// Podríamos bloquear el tamaño de la ventana o hacerla fullscreen
-	// Hacer que los cuadros de user/contraseña estén en vertical
 	public Login() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -127,7 +125,6 @@ public class Login extends JFrame {
 			
 		JTextField txtrCredenciales = new JTextField("Introduce tus credenciales");
 		txtrCredenciales.setBorder(BorderFactory.createLoweredBevelBorder());
-
 		txtrCredenciales.setHorizontalAlignment(SwingConstants.CENTER);
 		txtrCredenciales.setMargin(new Insets(3, 20, 3, 0));
 		txtrCredenciales.setFont(new Font("Times New Roman", Font.PLAIN, 24));
@@ -141,15 +138,14 @@ public class Login extends JFrame {
 		JButton btnConectar = new JButton("Conectar");
 		btnConectar.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		btnConectar.setToolTipText("Pulsa para conectarte a tu cuenta");
-		// Con "MouseListener" podemos hacer diferentes cosas cuando el mouse
-		// entre/salga
+		// Con "MouseListener" podemos hacer diferentes cosas cuando el mouse entre/salga
 		//El pulsar "Enter" hacemos click en el botón de Conectar
 		passwordField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     btnConectar.doClick();
-                }if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                } if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     dispose();
                 }
             }
@@ -218,7 +214,6 @@ public class Login extends JFrame {
 			}
 		});
 		btnConectar.setForeground(Color.BLACK);
-		// btnConectar.setBackground(Color.ORANGE);
 		btnConectar.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 15));
 		btnConectar.setBounds(444, 513, 376, 60);
 		contentPane.add(btnConectar);
@@ -243,7 +238,7 @@ public class Login extends JFrame {
         btnTeclado.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	    try {
-        	        // Ejecutar el comando para abrir el teclado de pantalla en Windows
+        	        // Ejecuta el teclado de pantalla en Windows
         	        Runtime.getRuntime().exec("cmd /c start osk");
         	    } catch (IOException ex) {
         	        ex.printStackTrace();

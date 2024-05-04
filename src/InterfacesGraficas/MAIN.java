@@ -73,71 +73,76 @@ public class Main extends JFrame {
 		ImageIcon ico2 =new ImageIcon(getClass().getResource("/imagenes/logo2.png"));
 		ImageIcon img2 =new ImageIcon(ico2.getImage().getScaledInstance(fondoLogo.getWidth(), fondoLogo.getHeight(), Image.SCALE_SMOOTH));
 		
-//		JButton btnRegistrarProducto = new JButton("Registrar Nuevo Producto");
-//		btnRegistrarProducto.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                RegistroNuevoProducto nuevoProducto = new RegistroNuevoProducto();
-//                nuevoProducto.setVisible(true);
-//                dispose();
-//            } 
-//        });
-//		btnRegistrarProducto.setBounds(52, 260, 228, 89);
-//		contentPane.add(btnRegistrarProducto);
-		
-		JLabel lblWelcomeToJowits = new JLabel("Welcome to jowIts, " + Usuario.getNombreUsuario() + ". " );
-		lblWelcomeToJowits.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWelcomeToJowits.setForeground(Color.WHITE);
-		lblWelcomeToJowits.setFont(new Font("Times New Roman", Font.PLAIN, 40));
-		lblWelcomeToJowits.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-		lblWelcomeToJowits.setBackground(SystemColor.textHighlightText);
-		lblWelcomeToJowits.setBounds(10, 22, 1244, 94);
-		contentPane.add(lblWelcomeToJowits);
-		
-		JPanel panelTitulo = new JPanel();
-		panelTitulo.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-		panelTitulo.setBackground(new Color(0, 0, 0, 90));
-		panelTitulo.setBounds(10, 22, 1244, 94);
-		contentPane.add(panelTitulo);
-		panelTitulo.setLayout(new BorderLayout());
-		fondoLogo.setIcon(img2);
-		contentPane.add(fondoLogo);
-		
-		//BOTÓN DE ATRÁS
-		JButton btnCerrarSesion = new JButton("Cerrar sesión");
-		btnCerrarSesion.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                MainFrame mainFrame = new MainFrame();
-                mainFrame.setVisible(true);
-                dispose();
-            }
-        });
-		getContentPane().add(btnCerrarSesion, BorderLayout.CENTER);
-		btnCerrarSesion.setBounds(88, 533, 228, 89);
-		contentPane.add(btnCerrarSesion);	
-		
-		JButton btnSalir = new JButton("Salir de la aplicación");
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(contentPane, "Gracias por usar JowIts!", "Saliendo de la aplicación. ", JOptionPane.INFORMATION_MESSAGE);
-				dispose();
-			}
-		});
-		btnSalir.setBounds(966, 584, 192, 52);
-		contentPane.add(btnSalir);
 		
 		
 		
 		
-		/*
-		 * 
-		 * BOTON REGISTRIOS
-		 * 
-		 */
+		JButton btnVisualizacion = new JButton("VISUALIZACIÓN");
+		btnVisualizacion.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		btnVisualizacion.setBounds(800, 191, 346, 221);
+		contentPane.add(btnVisualizacion);
+		
+		btnVisualizacion.addActionListener(new ActionListener() {
+	          public void actionPerformed(ActionEvent e) {
+	        	JPanel panel = new JPanel();
+	            JButton button1 = new JButton("Producto");
+	            JButton button2 = new JButton("Categorias");
+	            
+	            panel.add(button1);
+	            panel.add(button2);
+	          
+	            button1.addActionListener(new ActionListener() {
+	                public void actionPerformed(ActionEvent e) {
+	                    // Crear y mostrar el nuevo frame
+	                	VerProductos PRODUCTOS = new VerProductos();
+	                	PRODUCTOS.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cierra solo este frame, no toda la aplicación
+	                	PRODUCTOS.setVisible(true);
+	                	dispose();
+	                }
+	            });
+	            
+	            button2.addActionListener(new ActionListener() {
+	                public void actionPerformed(ActionEvent e) {
+	                    // Crear y mostrar el nuevo frame
+	                	VerCategorias CATEGORIAS = new VerCategorias();
+	                	CATEGORIAS.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cierra solo este frame, no toda la aplicación
+	                	CATEGORIAS.setVisible(true);
+	                	dispose();
+	                }
+	            });
+	            
+	            
+	            
+	            // Mostrar el panel dentro de un JOptionPane
+	            int option = JOptionPane.showOptionDialog(contentPane, panel, "Selecciona una opción",
+	                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+	                    new Object[]{"Cancelar"}, null);
+	            
+	            // Realizar acciones basadas en la opción seleccionada
+	            switch (option) {
+	                case 0: // El usuario seleccionó el primer botón
+	                    System.out.println("El usuario seleccionó Opción 1");
+	                    
+	                    
+	                    
+	                    break;
+	                case 1: // El usuario seleccionó el segundo botón
+	                    System.out.println("El usuario seleccionó Opción 2");
+	                    
+	                    
+	                    
+	                    break;
+	                default: // El usuario cerró el diálogo o seleccionó Cancelar
+	                    System.out.println("El usuario canceló");
+	                    break;
+	            }
+	          }
+	      });
 		
 		
 		JButton btnRegistros = new JButton("REGISTROS");
-		btnRegistros.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnRegistros.setBounds(88, 268, 164, 94);
+		btnRegistros.setFont(new Font("Tahoma", Font.PLAIN, 48));
+		btnRegistros.setBounds(117, 198, 346, 221);
 		contentPane.add(btnRegistros);
 		btnRegistros.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
@@ -228,78 +233,73 @@ public class Main extends JFrame {
           }
       });
 		
+//		JButton btnRegistrarProducto = new JButton("Registrar Nuevo Producto");
+//		btnRegistrarProducto.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                RegistroNuevoProducto nuevoProducto = new RegistroNuevoProducto();
+//                nuevoProducto.setVisible(true);
+//                dispose();
+//            } 
+//        });
+//		btnRegistrarProducto.setBounds(52, 260, 228, 89);
+//		contentPane.add(btnRegistrarProducto);
+		
+		JLabel lblWelcomeToJowits = new JLabel("Welcome to jowIts, " + Usuario.getNombreUsuario() + ". " );
+		lblWelcomeToJowits.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWelcomeToJowits.setForeground(Color.WHITE);
+		lblWelcomeToJowits.setFont(new Font("Times New Roman", Font.PLAIN, 40));
+		lblWelcomeToJowits.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		lblWelcomeToJowits.setBackground(SystemColor.textHighlightText);
+		lblWelcomeToJowits.setBounds(10, 22, 1244, 94);
+		contentPane.add(lblWelcomeToJowits);
+		
+		JPanel panelTitulo = new JPanel();
+		panelTitulo.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		panelTitulo.setBackground(new Color(0, 0, 0, 90));
+		panelTitulo.setBounds(10, 22, 1244, 94);
+		contentPane.add(panelTitulo);
+		panelTitulo.setLayout(new BorderLayout());
+		fondoLogo.setIcon(img2);
+		contentPane.add(fondoLogo);
+		
+		//BOTÓN DE ATRÁS
+		JButton btnCerrarSesion = new JButton("Cerrar sesión");
+		btnCerrarSesion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                MainFrame mainFrame = new MainFrame();
+                mainFrame.setVisible(true);
+                dispose();
+            }
+        });
+		getContentPane().add(btnCerrarSesion, BorderLayout.CENTER);
+		btnCerrarSesion.setBounds(88, 533, 228, 89);
+		contentPane.add(btnCerrarSesion);	
+		
+		JButton btnSalir = new JButton("Salir de la aplicación");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(contentPane, "Gracias por usar JowIts!", "Saliendo de la aplicación. ", JOptionPane.INFORMATION_MESSAGE);
+				dispose();
+			}
+		});
+		btnSalir.setBounds(966, 584, 192, 52);
+		contentPane.add(btnSalir);
+		
+		
+		
+		
+		/*
+		 * 
+		 * BOTON REGISTRIOS
+		 * 
+		 */
+		
 		
 		/*
 		 * 
 		 * VISUALIZACION
 		 * 
 		 */
-		
-		
-		
-		
-		
-		JButton btnVisualizacion = new JButton("VISUALIZACION");
-		btnVisualizacion.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnVisualizacion.setBounds(1011, 268, 164, 94);
-		contentPane.add(btnVisualizacion);
-		
-		btnVisualizacion.addActionListener(new ActionListener() {
-	          public void actionPerformed(ActionEvent e) {
-	        	JPanel panel = new JPanel();
-	            JButton button1 = new JButton("Producto");
-	            JButton button2 = new JButton("Categorias");
-	            
-	            panel.add(button1);
-	            panel.add(button2);
-	          
-	            button1.addActionListener(new ActionListener() {
-	                public void actionPerformed(ActionEvent e) {
-	                    // Crear y mostrar el nuevo frame
-	                	VerProductos PRODUCTOS = new VerProductos();
-	                	PRODUCTOS.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cierra solo este frame, no toda la aplicación
-	                	PRODUCTOS.setVisible(true);
-	                	dispose();
-	                }
-	            });
-	            
-	            button2.addActionListener(new ActionListener() {
-	                public void actionPerformed(ActionEvent e) {
-	                    // Crear y mostrar el nuevo frame
-	                	VerCategorias CATEGORIAS = new VerCategorias();
-	                	CATEGORIAS.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cierra solo este frame, no toda la aplicación
-	                	CATEGORIAS.setVisible(true);
-	                	dispose();
-	                }
-	            });
-	            
-	            
-	            
-	            // Mostrar el panel dentro de un JOptionPane
-	            int option = JOptionPane.showOptionDialog(contentPane, panel, "Selecciona una opción",
-	                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-	                    new Object[]{"Cancelar"}, null);
-	            
-	            // Realizar acciones basadas en la opción seleccionada
-	            switch (option) {
-	                case 0: // El usuario seleccionó el primer botón
-	                    System.out.println("El usuario seleccionó Opción 1");
-	                    
-	                    
-	                    
-	                    break;
-	                case 1: // El usuario seleccionó el segundo botón
-	                    System.out.println("El usuario seleccionó Opción 2");
-	                    
-	                    
-	                    
-	                    break;
-	                default: // El usuario cerró el diálogo o seleccionó Cancelar
-	                    System.out.println("El usuario canceló");
-	                    break;
-	            }
-	          }
-	      });
 			
 		
 		

@@ -107,6 +107,7 @@ public class CrearCategoria extends JFrame {
 					connectInv.conectar();
 					System.out.println("Conectado a la BBDD! ");
 					String consulta = "INSERT INTO Categoria (nombreCategoria) VALUES ('" + textoCategoria + "')";
+					@SuppressWarnings("unused")
 					int filasAfectadas = connectInv.ejecutarInsertDeleteUpdate(consulta);
 
 					JOptionPane.showMessageDialog(btnCreaCategoria, "Categoría registrada con éxito. ");

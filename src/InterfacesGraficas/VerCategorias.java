@@ -8,12 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,17 +22,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.table.TableModel;
 
 import connections.ConexionMySQL;
-import java.awt.Component;
 import java.awt.Desktop;
 
 import javax.swing.SwingConstants;
-import javax.swing.JSeparator;
-import javax.swing.JSlider;
-import javax.swing.JTable;
 
 public class VerCategorias extends JFrame {
 

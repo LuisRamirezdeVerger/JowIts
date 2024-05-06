@@ -40,7 +40,8 @@ public class MainFrame extends JFrame {
                 if (result == JOptionPane.OK_OPTION) {
                     // Obtiene la contraseña ingresada por el usuario
                     char[] passwordChars = passwordField.getPassword();
-                    String password = new String(passwordChars);
+                    @SuppressWarnings("unused")
+					String password = new String(passwordChars);
                     //Aquí añadiremos el panel de administración
                     Main nuevoFrame = new Main();
                     nuevoFrame.setVisible(true);
